@@ -1,0 +1,42 @@
+.suggestion {
+  width: 170px;
+  height: 100px;
+  background-color: #333;
+  color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 0.2px solid #333;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 240px;
+  text-align: right;
+}
+.suggestions-container.light-mode > button {
+  background: #6633cc;
+  color: white;
+}
+.suggestions-container.light-mode > button:hover {
+  background: #e2e2e2;
+  color: black;
+}
+
+.suggestion:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.suggestions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.purple {
+  background-color: #6633cc;
+}

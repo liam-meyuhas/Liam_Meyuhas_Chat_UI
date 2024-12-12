@@ -1,0 +1,63 @@
+.chat-response {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.rtl {
+  text-align: right;
+  direction: rtl;
+}
+
+.ltr {
+  text-align: left;
+  direction: ltr;
+}
+
+.question {
+  padding: 15px;
+  border-radius: 20px;
+  background-color: #292424;
+  color: white;
+  width: fit-content;
+}
+
+.question-light {
+  background-color: #e2e2ee;
+  color: black;
+}
+
+.icons {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  cursor: pointer;
+  color: gray;
+}
+
+.icons:hover {
+  color: white;
+}
+
+.icons-negative {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  cursor: pointer;
+  color: gray;
+}
+.icons-negative:hover {
+  color: red;
+}
+
+.icons-positive {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  cursor: pointer;
+  color: gray;
+}
+
+.icons-positive:hover {
+  color: rgb(8, 250, 8);
+}

@@ -1,0 +1,57 @@
+.icon-profile {
+  padding: 1px;
+  font-size: 32px;
+  color: white;
+}
+.avatar-icon-profile {
+  padding: 1px;
+  font-size: 25px;
+  color: white;
+  justify-items: center;
+}
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  margin-top: 180px;
+  background-color: #555;
+  border: 1px solid black;
+  align-items: center;
+}
+.theme-container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 100px;
+  height: auto;
+  z-index: 999;
+}
+.user-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 50px;
+  right: 60px;
+  animation: slide-down 0.3s ease-out;
+  z-index: 1000;
+}
+.user-container > button {
+  background-color: #6633cc;
+}
+
+.user-container > button:hover {
+  background-color: #8054d6;
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
