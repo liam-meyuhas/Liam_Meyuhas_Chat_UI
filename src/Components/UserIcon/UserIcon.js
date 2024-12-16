@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FiUser } from "react-icons/fi";
 import "./UserIcon.css";
-import ChangeBotName from "./ChangeBotName";
-import Avatar from "./Avatar";
-import ActiveMode from "./ActiveMode";
+import ChangeBotName from "../ChangeBotName/ChangeBotName";
+import Avatar from "../Avatar/Avatar";
+import ActiveMode from "../ActiveMode/ActiveMode";
 
 const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);

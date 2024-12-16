@@ -4,8 +4,8 @@ import { IoCopyOutline, IoReloadSharp } from "react-icons/io5";
 import { SiZcool } from "react-icons/si";
 import clsx from "clsx";
 import "./index.css";
-import ChangeResponse from "../ChangeResponse";
-import loading from "../videos/loading.gif";
+import ChangeResponse from "../ChangeResponse/ChangeResponse";
+import loading from "../../videos/loading.gif";
 
 const ChatResponse = ({
   input,

@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaRegPaperPlane } from "react-icons/fa";
 import "./ChatInput.css";
 import { ImAttachment } from "react-icons/im";
-import ChatResponse from "./ChatResponse";
-
+import ChatResponse from "../ChatResponse";
 import clsx from "clsx";
 
 function ChatInput({
@@ -18,6 +17,7 @@ function ChatInput({
   const [input, setInput] = useState("");
   const displayTextRef = useRef(null);
   const [direction, setDirection] = useState("rtl");
+  const [isResizeable, setIsResizeable] = useState(false);
 
   const handleLanguageDirection = (value) => {
     if (value === "") {
@@ -83,7 +83,6 @@ function ChatInput({
           className={clsx(
             direction === "rtl" ? "input-icon-english" : "input-icon"
           )}
-          onClick={handleIconClick}
         />
       </div>
       {response.length > 0 && (
@@ -113,6 +112,7 @@ function ChatInput({
           ))}
         </div>
       )}
+      <div>blablabla</div>
     </div>
   );
 }

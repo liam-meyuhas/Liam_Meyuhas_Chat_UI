@@ -1,6 +1,6 @@
 import React from "react";
-import israelGif from "./videos/israel.gif";
-import "./Responses.css";
+import israelGif from "../../videos/israel.gif";
+import "../GlobalCss/Responses.css";
 
 const VideoResponse = () => {
   return (
