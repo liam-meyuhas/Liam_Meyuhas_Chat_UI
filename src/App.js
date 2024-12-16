@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
-import Settings from "./Settings";
-import ChatInput from "./ChatInput";
+import Settings from "./Components/settings/Settings";
+import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
-import Suggestions from "./Suggestions";
-import Sidebar from "./Sidebar";
+import Suggestions from "./Components/Suggestions/Suggestions";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import { PiLineVerticalBold } from "react-icons/pi";
-import UserIcon from "./UserIcon";
-import ImageResponse from "./ImageResponse";
-import VideoResponse from "./VideoResponse";
+import UserIcon from "./Components/UserIcon/UserIcon";
+import ImageResponse from "./Components/ImageResponse/ImageResponse";
+import VideoResponse from "./Components/VideoResponse/VideoResponse";
+import SplashScreen from "./Components/SplashScreen/SplashScreen";
 
 function App() {
   const faq = {
@@ -53,6 +54,7 @@ function App() {
   const [isActiveMode, setIsActiveMode] = useState(false);
   const [allChats, setAllChats] = useState([]);
   const [showGif, setShowGif] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarIsOpen(!isSidebarOpen);
@@ -70,19 +72,12 @@ function App() {
 
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`}>
+      <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
       {response.length === 0 && (
         <header className="App-header">
           <h1>{botName}</h1>
         </header>
       )}
-      <div>
-        <UserIcon
-          setIsLightMode={setIsLightMode}
-          setBotName={setBotName}
-          botName={botName}
-          setIsActiveMode={setIsActiveMode}
-        />
-      </div>
       <div>
         <span>
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
@@ -90,45 +85,58 @@ function App() {
           <span className="beta-tag">Beta</span>
         </span>
       </div>
-      {isSidebarOpen ? (
-        <Sidebar
-          isLightMode={isLightMode}
-          handleReset={handleReset}
-          allChats={allChats}
-          showChat={showChat}
-        />
-      ) : (
-        ""
-      )}
-      <button
-        className={`sidebar-toggle ${isSidebarOpen ? "" : "close"}`}
-        onClick={toggleSidebar}
-      >
-        <PiLineVerticalBold />
-      </button>
       <div>
         <Settings handleReset={handleReset} />
       </div>
-      {response.length === 0 && (
-        <div>
-          <Suggestions
-            isLightMode={isLightMode}
-            response={response}
-            setResponse={setResponse}
-            faq={faq}
-          />
-        </div>
-      )}
+      <div>
+        {response.length === 0 && (
+          <div>
+            <Suggestions
+              isLightMode={isLightMode}
+              response={response}
+              setResponse={setResponse}
+              faq={faq}
+            />
+          </div>
+        )}
+      </div>
       <div className="chatInput-container">
         <ChatInput
           response={response}
           setResponse={setResponse}
           isLightMode={isLightMode}
           isActiveMode={isActiveMode}
+          setIsActiveMode={setIsActiveMode}
           showGif={showGif}
           setShowGif={setShowGif}
           faq={faq}
         />
+      </div>
+      <div>
+        {isSidebarOpen ? (
+          <Sidebar
+            isLightMode={isLightMode}
+            handleReset={handleReset}
+            allChats={allChats}
+            showChat={showChat}
+          />
+        ) : (
+          ""
+        )}
+        <button
+          className={`sidebar-toggle ${isSidebarOpen ? "" : "close"}`}
+          onClick={toggleSidebar}
+        >
+          <PiLineVerticalBold />
+        </button>
+        <div>
+          <UserIcon
+            setIsLightMode={setIsLightMode}
+            setBotName={setBotName}
+            botName={botName}
+            setIsActiveMode={setIsActiveMode}
+          />
+        </div>
       </div>
     </div>
   );

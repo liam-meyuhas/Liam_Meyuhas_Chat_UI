@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Models.css";
+import "../GlobalCss/Modals.css";
 import "./ChangeBotName.css";
 
 const ChangeBotName = ({ setBotName, botName }) => {

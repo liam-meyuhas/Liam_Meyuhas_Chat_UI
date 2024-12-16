@@ -63,20 +63,6 @@
   color: white;
 }
 
-.input-icon-attach-file-english {
-  padding: 5px;
-  position: absolute;
-  right: -200px;
-  margin-top: 9%;
-  transform: translateY(-50%);
-  color: #aaa;
-  cursor: pointer;
-}
-
-.input-icon-attach-file-english:hover {
-  color: white;
-}
-
 .input-box-english {
   padding: 10px 10px 10px 40px;
   padding-right: 40px;

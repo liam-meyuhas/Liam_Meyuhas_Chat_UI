@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiUser } from "react-icons/fi";
-import "./Models.css";
+import "../GlobalCss/Modals.css";
 import "./Avatar.css";
 
 const Avatar = ({ setUserIcon }) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RiChatNewLine } from "react-icons/ri";
 import "./NewChatButton.css";
-import "./Models.css";
+import "../GlobalCss/Modals.css";
 
 const NewChatButton = ({ handleReset }) => {
   const [showModal, setShowModal] = useState(false);

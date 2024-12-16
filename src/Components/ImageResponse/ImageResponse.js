@@ -1,6 +1,6 @@
 import React from "react";
-import wolf from "./images/wolf.jpeg";
-import "./Responses.css";
+import wolf from "../../images/wolf.jpeg";
+import "../GlobalCss/Responses.css";
 
 const ImageResponse = () => {
   return (

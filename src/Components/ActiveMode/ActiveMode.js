@@ -1,5 +1,6 @@
 import React from "react";
-import "./Models.css";
+import "../GlobalCss/Modals.css";
+
 const ActiveMode = ({ setIsActiveMode }) => {
   const activeMode = () => {
     setIsActiveMode((prevState) => !prevState);
