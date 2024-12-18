@@ -61,8 +61,6 @@ function App() {
   };
 
   const handleReset = () => {
-    // if (allChats.find((x) => x.id === id)) {}
-    // todo: show chat by id
     if (response.length > 0) {
       const chat = {
         id: id,
@@ -70,7 +68,7 @@ function App() {
         timeStamp: new Date(),
       }
       setId(id + 1)
-      setAllChats([...allChats, chat]);
+      setAllChats([chat, ...allChats]);
     }
     setResponse([]);
   };

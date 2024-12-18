@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Sidebar.css";
-import clsx from "clsx";
-import NewChatButton from "../NewChatButton/NewChatButton";
-import { FcPrevious } from "react-icons/fc";
+import React, {useEffect, useRef, useState} from 'react';
+import './Sidebar.css';
+import clsx from 'clsx';
+import NewChatButton from '../NewChatButton/NewChatButton';
+import {FcPrevious} from 'react-icons/fc';
 import {dates} from '../../resources/Sidebar';
+import {Button} from '@mui/material';
 
-const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
+const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   const messagesEndRef = useRef(null);
+  const [activeButton, setActiveButton] = useState(null);
 
   const calculateDaysAgo = timeStamp => {
     const now = new Date();
     const difference = now - new Date(timeStamp);
-    const daysAgo = Math.floor(difference / (1000 * 60));
+    const dayInMilliseconds = 1000 * 60 * 60 * 24;
+    const daysAgo = Math.floor(difference / dayInMilliseconds);
 
     if (daysAgo >= 60) return dates.twoMonths;
     if (daysAgo >= 30) return dates.month;
@@ -25,8 +28,24 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
     return `לפני ${daysAgo} ימים`;
   };
 
+  const groupChatsByDay = chats => {
+    return chats.reduce((acc, chat) => {
+      const dayTitle = calculateDaysAgo(chat.timeStamp); // Get the "X days ago" label
+      if (!acc[dayTitle]) {
+        acc[dayTitle] = []; // Create an array for this day if it doesn't exist
+      }
+      acc[dayTitle].push(chat); // Add the chat to the corresponding group
+      return acc;
+    }, {});
+  };
+
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
+  const handleOnClick = ({id, responses}) => {
+    showChat(responses);
+    setActiveButton(id);
   };
 
   useEffect(() => {
@@ -34,23 +53,27 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   }, [allChats]);
 
   return (
-    <div className={clsx("sidebar", { "sidebar-light": isLightMode })}>
+    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
       <div className="sidebar-content">
-        <NewChatButton handleReset={handleReset} />
-        <div
-          className={clsx("button-column", {
-            "button-column-light": isLightMode,
-          })}
-        >
-          {allChats?.map((chat, index) => (
-            <div key={index}>
+        <NewChatButton handleReset={handleReset}/>
+        <div>
+          {Object.entries(groupChatsByDay(allChats)).map(([dayTitle, chats]) => (
+            <div key={dayTitle}>
               <span>
-                {calculateDaysAgo(chat.timeStamp)}
-                <FcPrevious />
+                {dayTitle}
+                <FcPrevious/>
               </span>
-              <button onClick={() => showChat(chat.responses)} ref={messagesEndRef}>
-                צ'אט
-              </button>
+              {chats.map(chat => (
+                <Button fullWidth={true}
+                        key={chat.id}
+                        variant={activeButton === chat.id ? 'contained' : 'outlined'}
+                        onClick={() => handleOnClick(chat)}
+                        ref={messagesEndRef}
+                        color="secondary"
+                        sx={{margin: '2px', color: isLightMode ? 'black' : 'white', borderWidth: '2px'}}>
+                  צ'אט
+                </Button>
+              ))}
             </div>
           ))}
         </div>
