@@ -3,30 +3,26 @@ import "./Sidebar.css";
 import clsx from "clsx";
 import NewChatButton from "../NewChatButton/NewChatButton";
 import { FcPrevious } from "react-icons/fc";
+import {dates} from '../../resources/Sidebar';
 
 const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   const messagesEndRef = useRef(null);
-  const [chatTimeStamp, setChatTimeStamp] = useState([]);
 
-  useEffect(() => {
-    const now = new Date();
-
-    setChatTimeStamp([...chatTimeStamp, now]);
-  }, [allChats]);
-
-  const calculateDaysAgo = (timeStamp) => {
+  const calculateDaysAgo = timeStamp => {
     const now = new Date();
     const difference = now - new Date(timeStamp);
-    const daysAgo = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const daysAgo = Math.floor(difference / (1000 * 60));
 
-    if (daysAgo >= 60) return "2 Months";
-    if (daysAgo >= 30) return "1 Month";
-    if (daysAgo >= 28) return "4 Weeks";
-    if (daysAgo >= 21) return "3 Weeks";
-    if (daysAgo >= 14) return "2 Weeks";
-    if (daysAgo >= 7) return "1 Week";
+    if (daysAgo >= 60) return dates.twoMonths;
+    if (daysAgo >= 30) return dates.month;
+    if (daysAgo >= 28) return dates.fourWeeks;
+    if (daysAgo >= 21) return dates.threeWeeks;
+    if (daysAgo >= 14) return dates.twoWeeks;
+    if (daysAgo >= 7) return dates.week;
+    if (daysAgo === 1) return dates.yesterday;
+    if (daysAgo === 0) return dates.today;
 
-    return `${daysAgo} Days`;
+    return `לפני ${daysAgo} ימים`;
   };
 
   const scrollToBottom = () => {
@@ -49,11 +45,10 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
           {allChats?.map((chat, index) => (
             <div key={index}>
               <span>
-                Previous
-                {calculateDaysAgo(chatTimeStamp[index])}
+                {calculateDaysAgo(chat.timeStamp)}
                 <FcPrevious />
               </span>
-              <button onClick={() => showChat(chat)} ref={messagesEndRef}>
+              <button onClick={() => showChat(chat.responses)} ref={messagesEndRef}>
                 צ'אט
               </button>
             </div>
