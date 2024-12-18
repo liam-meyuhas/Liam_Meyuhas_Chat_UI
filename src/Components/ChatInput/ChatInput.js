@@ -4,6 +4,7 @@ import "./ChatInput.css";
 import { ImAttachment } from "react-icons/im";
 import ChatResponse from "../ChatResponse";
 import clsx from "clsx";
+import ActiveMode from "../ActiveMode/ActiveMode";
 
 function ChatInput({
   response,
@@ -13,6 +14,7 @@ function ChatInput({
   faq,
   showGif,
   setShowGif,
+  setIsActiveMode,
 }) {
   const [input, setInput] = useState("");
   const displayTextRef = useRef(null);
@@ -112,7 +114,9 @@ function ChatInput({
           )}
         />
       </div>
-      <div>blablabla</div>
+      <div>
+        <ActiveMode setIsActiveMode={setIsActiveMode} />
+      </div>
     </div>
   );
 }

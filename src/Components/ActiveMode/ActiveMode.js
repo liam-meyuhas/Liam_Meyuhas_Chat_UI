@@ -1,5 +1,6 @@
 import React from "react";
 import "../GlobalCss/Modals.css";
+import "./ActiveMode.css";
 
 const ActiveMode = ({ setIsActiveMode }) => {
   const activeMode = () => {
@@ -8,7 +9,7 @@ const ActiveMode = ({ setIsActiveMode }) => {
 
   return (
     <>
-      <button className="Button" onClick={activeMode}>
+      <button className="active-mode" onClick={activeMode}>
         מבצעי
       </button>
     </>

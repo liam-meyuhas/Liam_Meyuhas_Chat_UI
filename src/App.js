@@ -41,7 +41,7 @@ function App() {
     "תייצר לי תמונה של שועל מטייל ביער, צבעוני, זווית צילום רחבה": (
       <ImageResponse />
     ),
-    "כתוב לי קוד בפייתון": `('ברוכים הבאים לכוכב נולד⭐')print 
+    "כתוב לי קוד בפייתון": `('ברוכים הבאים לכוכב נולד⭐')print
   //הפקודה תדפיס ברוכים הבאים לכוכב נולד⭐`,
     "תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח": <VideoResponse />,
   };
@@ -102,6 +102,7 @@ function App() {
           showGif={showGif}
           setShowGif={setShowGif}
           faq={faq}
+          setIsActiveMode={setIsActiveMode}
         />
       </div>
       <div className="sidebar-app">

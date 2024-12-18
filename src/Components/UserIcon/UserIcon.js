@@ -3,7 +3,6 @@ import { FiUser } from "react-icons/fi";
 import "./UserIcon.css";
 import ChangeBotName from "../ChangeBotName/ChangeBotName";
 import Avatar from "../Avatar/Avatar";
-import ActiveMode from "../ActiveMode/ActiveMode";
 
 const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +35,6 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
           </button>
           <ChangeBotName setBotName={setBotName} botName={botName} />
           <Avatar setUserIcon={setUserIcon} />
-          <ActiveMode setIsActiveMode={setIsActiveMode} />
         </div>
       )}
     </div>
