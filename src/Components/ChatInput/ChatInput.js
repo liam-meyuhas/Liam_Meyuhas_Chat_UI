@@ -17,6 +17,7 @@ function ChatInput({
   const [input, setInput] = useState("");
   const displayTextRef = useRef(null);
   const [direction, setDirection] = useState("rtl");
+  const [isFocused, setIsFocused] = useState(false);
   const [isResizeable, setIsResizeable] = useState(false);
 
   const handleLanguageDirection = (value) => {
@@ -90,6 +91,8 @@ function ChatInput({
           type="text"
           value={input}
           onChange={handleChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           onKeyDown={handleKeyPress}
           placeholder={`${
             direction === "rtl" ? "שאל אותי כל דבר..." : "Ask me anything..."
@@ -98,7 +101,9 @@ function ChatInput({
             direction === "rtl" ? "input-box" : "input-box-english",
             isLightMode && "input-box-light input-box-english-light"
           )}
-          style={{ direction: direction }}
+          style={{ direction: direction,
+            width: isFocused ? '500px' : '300px',
+            transition: 'width 0.5s ease-in-out'}}
         />
         <FaRegPaperPlane
           className={clsx(
