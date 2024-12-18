@@ -20,10 +20,8 @@ jobs:
 
     # Log in to Docker Hub or GitHub Container Registry
     - name: Log in to Registry
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.REGISTRY_USERNAME }}  # Add your Docker Hub username to secrets
-        password: ${{ secrets.REGISTRY_PASSWORD }}  # Add your Docker Hub password to secrets
+      run: |
+        docker login -u='${{ secrets.REGISTRY_USERNAME}}' -p='${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_URL }}
 
     # Build the Docker image
     - name: Build Docker image
