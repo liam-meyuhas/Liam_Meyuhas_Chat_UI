@@ -6,9 +6,9 @@ COPY package.json /opt/
 
 RUN npm i
 
-COPY src/ /opt/
+COPY ./src/ /opt/src/
 
-COPY public/ /opt/
+COPY ./public/ /opt/public/
 
 EXPOSE 3000
 
