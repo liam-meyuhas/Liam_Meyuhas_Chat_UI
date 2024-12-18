@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
+    environment:
+      name: master
+  
     steps:
     # Checkout the repository
     - name: Checkout code
