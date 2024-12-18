@@ -18,7 +18,7 @@ const ChangeBotName = ({ setBotName, botName }) => {
     setShowModal(false);
   };
   return (
-    <div>
+    <>
       <button className="Button" onClick={openModal}>
         שנה שם
       </button>
@@ -41,7 +41,7 @@ const ChangeBotName = ({ setBotName, botName }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

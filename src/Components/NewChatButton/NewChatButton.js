@@ -20,7 +20,7 @@ const NewChatButton = ({ handleReset }) => {
   };
 
   return (
-    <div>
+    <>
       <button className="new-chat" onClick={openModal}>
         שיחה חדשה
         <RiChatNewLine className="icon-new-chat" />
@@ -38,7 +38,7 @@ const NewChatButton = ({ handleReset }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -13,7 +13,6 @@
   font-size: 16px;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  margin-bottom: 240px;
   text-align: right;
 }
 .suggestions-container.light-mode > button {
@@ -34,7 +33,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 0px;
 }
 
 .purple {

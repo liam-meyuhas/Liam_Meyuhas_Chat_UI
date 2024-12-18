@@ -22,15 +22,13 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
 
   return (
     <div className="theme-container">
-      <div>
-        <button
-          className="profile"
-          onClick={toggleMenu}
-          title="ליאם מיוחס/יחידת אוצר/צוות מטמון"
-        >
-          <span className="avatar-icon-profile">{userIcon}</span>
-        </button>
-      </div>
+      <button
+        className="profile"
+        onClick={toggleMenu}
+        title="ליאם מיוחס/יחידת אוצר/צוות מטמון"
+      >
+        <span className="avatar-icon-profile">{userIcon}</span>
+      </button>
       {menuOpen && (
         <div className="user-container">
           <button className="Button" onClick={toggleMode}>

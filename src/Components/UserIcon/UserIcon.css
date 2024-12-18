@@ -15,7 +15,6 @@
   border-radius: 50%;
   cursor: pointer;
   display: flex;
-  margin-top: 180px;
   background-color: #555;
   border: 1px solid black;
   align-items: center;
@@ -24,12 +23,10 @@
   position: fixed;
   bottom: 10px;
   right: 10px;
-  width: 100px;
   height: auto;
   z-index: 999;
 }
 .user-container {
-  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 10px;

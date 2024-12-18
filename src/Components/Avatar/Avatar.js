@@ -24,7 +24,7 @@ const Avatar = ({ setUserIcon }) => {
     }
   }, [newUserIcon]);
   return (
-    <div>
+    <>
       <button className="Button" onClick={openModal}>
         אווטר
       </button>
@@ -77,7 +77,7 @@ const Avatar = ({ setUserIcon }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

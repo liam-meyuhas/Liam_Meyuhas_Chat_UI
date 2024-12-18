@@ -7,30 +7,17 @@
   min-height: 100vh;
   background-color: #333;
   color: white;
-  position: relative;
 }
 
 .App-header {
-  margin-top: 20vh;
   font-size: 1.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
 }
 
-.Button-container {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .chatInput-container {
-  position: absolute;
-  bottom: 17vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -42,20 +29,13 @@
 }
 
 .beta-tag {
-  display: inline-block;
   background-color: #c0281c;
   color: white;
-  position: absolute;
-  top: 4rem;
-  right: 13.5rem;
-  font-size: 12px;
+  font-size: 10px;
+  margin-right: 10px;
   padding: 2px 6px;
-  margin-left: 8px;
   border-radius: 3px;
-  vertical-align: middle;
   box-shadow: 0 2px 6px rgba(37, 150, 158, 0.3);
-  transform: rotateY(-20deg) rotateX(14deg) skewY(-5deg);
-  z-index: 999;
 }
 
 .beta-tag.light {
@@ -63,42 +43,36 @@
   color: black;
 }
 
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 999;
+}
+
 .sidebar-toggle {
   background: none;
   border: none;
   font-size: 30px;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 265px;
+  position: fixed;
   color: gray;
-  width: px;
+  top: 50%;
 }
 
 .sidebar-toggle.close {
-  right: -10px;
   top: 50%;
 }
 
 .alpha-logo {
-  position: absolute;
-  top: 1rem;
-  right: 0.5rem;
-  width: 100px;
-  height: auto;
+  width: 80px;
   animation: pulse 4s infinite;
-  z-index: 999;
 }
 
 .alpha-name {
-  position: absolute;
-  font-size: 40px;
-  top: 0rem;
-  right: 6.5rem;
-  width: 100px;
-  height: auto;
+  font-size: 30px;
   animation: pulse 4s infinite;
-  z-index: 999;
 }
 
 @keyframes pulse {
@@ -109,4 +83,11 @@
   50% {
     transform: scale(1.2);
   }
+}
+
+.sidebar-app {
+  display: flex;
+  position: fixed;
+  flex-direction: row;
+  right: 0;
 }

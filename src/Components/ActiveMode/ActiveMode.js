@@ -7,11 +7,11 @@ const ActiveMode = ({ setIsActiveMode }) => {
   };
 
   return (
-    <div>
+    <>
       <button className="Button" onClick={activeMode}>
         מבצעי
       </button>
-    </div>
+    </>
   );
 };
 

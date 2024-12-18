@@ -2,23 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
   gap: 10px;
   width: 100%;
 }
 
 .input-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  max-width: 300px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 }
 
 .input-icon {
   position: absolute;
-  left: -215px;
-  margin-top: 9%;
-  transform: translateY(-50%);
   color: #aaa;
   cursor: pointer;
+  left: 10px;
 }
 
 .input-icon:hover {
@@ -26,15 +30,11 @@
 }
 
 .input-box {
-  padding: 10px 40px 10px 40px;
+  padding: 10px 40px;
   font-size: 18px;
-  width: 250%;
   height: 55px;
-  position: absolute;
-  right: -223px;
   box-sizing: border-box;
   border-radius: 30px;
-  direction: rtl;
   border: 2px solid #201f1f;
   background-color: #201f1f;
   color: white;
@@ -52,11 +52,9 @@
 
 .input-icon-english {
   position: absolute;
-  right: -210px;
-  margin-top: 9%;
-  transform: translateY(-50%);
   color: #aaa;
   cursor: pointer;
+  right: 10px;
 }
 
 .input-icon-english:hover {
@@ -64,13 +62,9 @@
 }
 
 .input-box-english {
-  padding: 10px 10px 10px 40px;
-  padding-right: 40px;
-  font-size: 16px;
-  width: 250%;
+  padding: 10px 40px;
+  font-size: 18px;
   height: 55px;
-  position: absolute;
-  right: -223px;
   box-sizing: border-box;
   border-radius: 30px;
   direction: ltr;
@@ -90,21 +84,16 @@
 }
 
 .display-text {
-  position: fixed;
-  top: 55px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 750px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   padding: 10px;
   border-radius: 5px;
   box-sizing: border-box;
   text-align: right;
-  white-space: pre-wrap;
   word-wrap: break-word;
-  max-height: 420px;
+  max-height: 350px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
   gap: 50px;
 }
 

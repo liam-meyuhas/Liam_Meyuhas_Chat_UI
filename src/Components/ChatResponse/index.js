@@ -53,7 +53,7 @@ const ChatResponse = ({
       )}
 
       {showAnswer && (
-        <div>
+        <>
           <span>
             <ChangeResponse
               response={response}
@@ -66,7 +66,7 @@ const ChatResponse = ({
             <SiZcool />
           </span>
           {answer}
-        </div>
+        </>
       )}
       {showAnswer && (
         <div className="icons">

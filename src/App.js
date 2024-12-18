@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import Settings from "./Components/settings/Settings";
 import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
 import Suggestions from "./Components/Suggestions/Suggestions";
@@ -74,45 +73,38 @@ function App() {
     <div className={`App ${isLightMode ? "light-mode" : ""}`}>
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
       {response.length === 0 && (
-        <header className="App-header">
-          <h1>{botName}</h1>
-        </header>
-      )}
-      <div>
-        <span>
+        <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
           <p className="alpha-name">אלפא</p>
           <span className="beta-tag">Beta</span>
+        </header>
+      )}
+      {response.length === 0 && (
+        <span className="App-header">
+          <h1>{botName}</h1>
         </span>
-      </div>
-      <div>
-        <Settings handleReset={handleReset} />
-      </div>
-      <div>
-        {response.length === 0 && (
-          <div>
-            <Suggestions
-              isLightMode={isLightMode}
-              response={response}
-              setResponse={setResponse}
-              faq={faq}
-            />
-          </div>
-        )}
-      </div>
+      )}
+
+      {response.length === 0 && (
+        <Suggestions
+          isLightMode={isLightMode}
+          response={response}
+          setResponse={setResponse}
+          faq={faq}
+        />
+      )}
       <div className="chatInput-container">
         <ChatInput
           response={response}
           setResponse={setResponse}
           isLightMode={isLightMode}
           isActiveMode={isActiveMode}
-          setIsActiveMode={setIsActiveMode}
           showGif={showGif}
           setShowGif={setShowGif}
           faq={faq}
         />
       </div>
-      <div>
+      <div className="sidebar-app">
         {isSidebarOpen ? (
           <Sidebar
             isLightMode={isLightMode}
@@ -129,15 +121,13 @@ function App() {
         >
           <PiLineVerticalBold />
         </button>
-        <div>
-          <UserIcon
-            setIsLightMode={setIsLightMode}
-            setBotName={setBotName}
-            botName={botName}
-            setIsActiveMode={setIsActiveMode}
-          />
-        </div>
       </div>
+      <UserIcon
+        setIsLightMode={setIsLightMode}
+        setBotName={setBotName}
+        botName={botName}
+        setIsActiveMode={setIsActiveMode}
+      />
     </div>
   );
 }

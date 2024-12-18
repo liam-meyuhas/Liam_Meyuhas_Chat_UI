@@ -58,33 +58,6 @@ function ChatInput({
 
   return (
     <div className="input-container">
-      <div className="input-wrapper">
-        <input
-          type="text"
-          value={input}
-          onChange={handleChange}
-          onKeyDown={handleKeyPress}
-          placeholder={`${
-            direction === "rtl" ? "שאל אותי כל דבר..." : "Ask me anything..."
-          }`}
-          className={clsx(
-            direction === "rtl" ? "input-box" : "input-box-english",
-            isLightMode && "input-box-light input-box-english-light"
-          )}
-          style={{ direction: direction }}
-        />
-        <FaRegPaperPlane
-          className={clsx(
-            direction === "rtl" ? "input-icon" : "input-icon-english"
-          )}
-          onClick={handleIconClick}
-        />
-        <ImAttachment
-          className={clsx(
-            direction === "rtl" ? "input-icon-english" : "input-icon"
-          )}
-        />
-      </div>
       {response.length > 0 && (
         <div
           className={clsx(
@@ -112,6 +85,33 @@ function ChatInput({
           ))}
         </div>
       )}
+      <div className="input-wrapper">
+        <input
+          type="text"
+          value={input}
+          onChange={handleChange}
+          onKeyDown={handleKeyPress}
+          placeholder={`${
+            direction === "rtl" ? "שאל אותי כל דבר..." : "Ask me anything..."
+          }`}
+          className={clsx(
+            direction === "rtl" ? "input-box" : "input-box-english",
+            isLightMode && "input-box-light input-box-english-light"
+          )}
+          style={{ direction: direction }}
+        />
+        <FaRegPaperPlane
+          className={clsx(
+            direction === "rtl" ? "input-icon" : "input-icon-english"
+          )}
+          onClick={handleIconClick}
+        />
+        <ImAttachment
+          className={clsx(
+            direction === "rtl" ? "input-icon-english" : "input-icon"
+          )}
+        />
+      </div>
       <div>blablabla</div>
     </div>
   );
