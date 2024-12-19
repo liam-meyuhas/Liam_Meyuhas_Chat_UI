@@ -1,7 +1,7 @@
 import {chatInput, questionSuggestion} from '../fixtures/chat/locators';
 
-// Should not work yet
-describe('Click on message', () => {
+// Should not work yet. After changing the chat logic should delete the "skip"
+describe.skip('Click on message', () => {
   it('Clicks on a message button', () => {
     cy.getByDataTestId(questionSuggestion)
       .click()

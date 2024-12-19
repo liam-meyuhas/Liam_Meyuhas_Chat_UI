@@ -1,10 +1,10 @@
-import {answer, chatInput, question, questionSuggestion} from '../fixtures/chat/locators';
+import {answer, chatInput, displayText, question, questionSuggestion} from '../fixtures/chat/locators';
 import {message} from '../fixtures/chat/constants';
-import {newChat, sidebarToggle} from '../fixtures/sidebar/locators';
+import {newChat, oldChat, sidebarToggle} from '../fixtures/sidebar/locators';
 import {confirmReset, modalContent} from '../fixtures/dialog/locators';
 
 // todo: Change the before to use api request
-describe('Create new chat', () => {
+describe('See old chat', () => {
   beforeEach(() => {
     cy.getByDataTestId(chatInput)
       .type(`${message}{enter}`)
@@ -12,8 +12,6 @@ describe('Create new chat', () => {
       .should('have.text', message)
       .getByDataTestId(answer)
       .should('be.visible');
-  });
-  it('Creates a new chat', () => {
     cy.getByDataTestId(sidebarToggle)
       .click()
       .getByDataTestId(newChat)
@@ -22,10 +20,18 @@ describe('Create new chat', () => {
       .should('be.visible')
       .getByDataTestId(confirmReset)
       .click();
+    cy.getByDataTestId(questionSuggestion)
+      .should('be.visible');
+    cy.getByDataTestId(sidebarToggle)
+      .click();
   });
 
-  after(() => {
-    cy.getByDataTestId(questionSuggestion)
+  it('Sees an old chat', () => {
+    cy.getByDataTestId(sidebarToggle)
+      .click()
+      .getByDataTestId(oldChat)
+      .click()
+      .getByDataTestId(displayText)
       .should('be.visible');
   });
 });
