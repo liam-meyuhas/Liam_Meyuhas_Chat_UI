@@ -103,7 +103,7 @@ function ChatInput({
           )}
           style={{ direction: direction,
             width: isFocused ? '500px' : '300px',
-            transition: 'width 0.5s ease-in-out'}}
+            transition: 'width 0.4s ease-in-out'}}
         />
         <FaRegPaperPlane
           className={clsx(
