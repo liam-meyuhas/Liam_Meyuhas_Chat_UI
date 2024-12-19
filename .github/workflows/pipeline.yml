@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up OpenShift CLI
-        uses: redhat-actions/oc-cli-action@v2
+        uses: redhat-actions/oc-cli-action@v1
         with:
           version: 'latest' # You can specify a version here if needed
 
