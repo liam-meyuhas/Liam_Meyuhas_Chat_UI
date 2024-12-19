@@ -37,6 +37,8 @@ jobs:
         
   rollout:
     runs-on: ubuntu-latest
+    environment:
+      name: master
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
