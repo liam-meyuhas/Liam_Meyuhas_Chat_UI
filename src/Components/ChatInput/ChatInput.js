@@ -94,6 +94,7 @@ function ChatInput({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onKeyDown={handleKeyPress}
+          data-testid="chat-input"
           placeholder={`${
             direction === "rtl" ? "שאל אותי כל דבר..." : "Ask me anything..."
           }`}

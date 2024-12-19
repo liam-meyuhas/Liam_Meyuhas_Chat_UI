@@ -64,7 +64,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${isLightMode ? "light-mode" : ""}`}>
+    <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
 
       {response.length === 0 && (

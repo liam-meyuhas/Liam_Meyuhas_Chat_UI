@@ -14,7 +14,7 @@ const SplashScreen = ({ isLoading, setIsLoading }) => {
   if (!isLoading) return null;
 
   return (
-    <div className="splash-screen">
+    <div className="splash-screen" data-testid="splash-screen">
       <img src={`${israelGif}`} alt="Israel-Gif" className="im"></img>
     </div>
   );
