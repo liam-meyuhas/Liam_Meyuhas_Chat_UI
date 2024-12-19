@@ -4,7 +4,7 @@ WORKDIR /opt
 
 COPY package.json /opt/
 
-RUN npm i
+RUN npm i --legacy-peer-deps
 
 COPY ./src/ /opt/src/
 
