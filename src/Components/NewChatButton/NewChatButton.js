@@ -31,7 +31,7 @@ const NewChatButton = ({ handleReset, setActiveButton }) => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <p>אתב בטוח שאתה רוצה למחוק את הצאט</p>
+            <p>אתה בטוח שאתה רוצה למחוק את הצאט</p>
             <button className="Button" onClick={confirmReset}>
               כן
             </button>

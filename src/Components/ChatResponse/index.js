@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SlLike, SlDislike } from "react-icons/sl";
 import { IoCopyOutline, IoReloadSharp } from "react-icons/io5";
-import { SiZcool } from "react-icons/si";
 import clsx from "clsx";
 import "./index.css";
 import ChangeResponse from "../ChangeResponse/ChangeResponse";
@@ -44,7 +43,7 @@ const ChatResponse = ({
           "question-light": isLightMode,
         })}
       >
-        <span className="icons">ליאם:</span>
+        <span className="icons">ליאם</span>
         {input}
       </div>
 
@@ -61,10 +60,7 @@ const ChatResponse = ({
               faq={faq}
             />
           </span>
-          <span className="icons">
-            אלפי
-            <SiZcool />
-          </span>
+          <span className="icons">אלפי</span>
           {answer}
         </>
       )}
