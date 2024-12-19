@@ -1,0 +1,1 @@
+export const message = 'What is the capital of Israel';
