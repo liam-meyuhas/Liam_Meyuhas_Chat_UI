@@ -33,6 +33,8 @@
   flex-direction: row;
   cursor: pointer;
   color: gray;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .icons:hover {
@@ -45,6 +47,8 @@
   flex-direction: row;
   cursor: pointer;
   color: gray;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 .icons-negative:hover {
   color: red;
@@ -56,6 +60,8 @@
   flex-direction: row;
   cursor: pointer;
   color: gray;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .icons-positive:hover {
