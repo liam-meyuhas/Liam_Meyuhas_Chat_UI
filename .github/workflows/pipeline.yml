@@ -34,3 +34,34 @@ jobs:
     - name: Push Docker image
       run: |
         docker push ${{ secrets.REGISTRY_URL }}/alpha:master  # Push with the commit hash tag
+        
+  rollout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up OpenShift CLI
+        uses: redhat-actions/oc-cli-action@v2
+        with:
+          version: 'latest' # You can specify a version here if needed
+
+      - name: Log in to OpenShift
+        env:
+          OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+          OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+        run: |
+          oc login $OPENSHIFT_SERVER --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify=true
+          
+      - name: Trigger rollout
+        run: |
+          # Replace these with your actual namespace and deployment
+          DEPLOYMENT_NAME=d-alpha-fe
+          NAMESPACE=single
+          
+          # Trigger the rollout
+          oc rollout restart deployment/$DEPLOYMENT_NAME -n $NAMESPACE
+          
+      - name: Logout of Openshift
+        run: |
+          oc logout
