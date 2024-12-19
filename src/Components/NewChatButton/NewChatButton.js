@@ -3,7 +3,7 @@ import { RiChatNewLine } from "react-icons/ri";
 import "./NewChatButton.css";
 import "../GlobalCss/Modals.css";
 
-const NewChatButton = ({ handleReset }) => {
+const NewChatButton = ({ handleReset, setActiveButton }) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -14,8 +14,11 @@ const NewChatButton = ({ handleReset }) => {
     setShowModal(false);
   };
 
+  const newChatId = -1;
+
   const confirmReset = () => {
     handleReset();
+    setActiveButton(newChatId);
     setShowModal(false);
   };
 

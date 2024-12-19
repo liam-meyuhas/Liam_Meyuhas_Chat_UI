@@ -40,6 +40,7 @@ function App() {
   const [allChats, setAllChats] = useState([]);
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [id, setId] = useState(1)
 
   const toggleSidebar = () => {
     setIsSidebarIsOpen(!isSidebarOpen);
@@ -47,12 +48,19 @@ function App() {
 
   const handleReset = () => {
     if (response.length > 0) {
-      setAllChats([...allChats, response]);
+      const chat = {
+        id: id,
+        responses: response,
+        timeStamp: new Date(),
+      }
+      setId(id + 1)
+      setAllChats([chat, ...allChats]);
     }
     setResponse([]);
   };
-  const showChat = (chat) => {
-    setResponse(chat);
+
+  const showChat = responses => {
+    setResponse(responses);
   };
 
   return (
