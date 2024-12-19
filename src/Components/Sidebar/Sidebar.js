@@ -81,6 +81,7 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
                       color: isLightMode ? "black" : "white",
                       borderWidth: "2px",
                     }}
+                    data-testid="old-chat"
                   >
                     צ'אט
                   </Button>
