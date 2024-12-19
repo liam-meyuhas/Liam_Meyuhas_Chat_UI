@@ -55,7 +55,7 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   return (
     <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
       <div className="sidebar-content">
-        <NewChatButton handleReset={handleReset}/>
+        <NewChatButton handleReset={handleReset} setActiveButton={setActiveButton}/>
         <div>
           {Object.entries(groupChatsByDay(allChats)).map(([dayTitle, chats]) => (
             <div key={dayTitle}>
