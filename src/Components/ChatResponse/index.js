@@ -44,7 +44,7 @@ const ChatResponse = ({
         })}
       >
         <span className="icons">ליאם</span>
-        {input}
+        <span data-testid='question'>{input}</span>
       </div>
 
       {!showAnswer && showGif && (
@@ -61,7 +61,7 @@ const ChatResponse = ({
             />
           </span>
           <span className="icons">אלפי</span>
-          {answer}
+          <span data-testid='answer'>{answer}</span>
         </>
       )}
       {showAnswer && (
