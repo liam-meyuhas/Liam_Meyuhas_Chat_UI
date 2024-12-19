@@ -29,11 +29,11 @@ jobs:
     # Build the Docker image
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.REGISTRY_URL }}/alpha:master .  # Build with the commit hash as the tag
+        docker build -t ${{ secrets.REGISTRY_URL }}/alpha-frontend:master .  # Build with the commit hash as the tag
     # Push the Docker image to Docker Hub or another registry
     - name: Push Docker image
       run: |
-        docker push ${{ secrets.REGISTRY_URL }}/alpha:master  # Push with the commit hash tag
+        docker push ${{ secrets.REGISTRY_URL }}/alpha-frontend:master  # Push with the commit hash tag
         
   rollout:
     runs-on: ubuntu-latest
