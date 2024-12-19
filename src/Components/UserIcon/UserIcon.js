@@ -26,6 +26,7 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
         className="profile"
         onClick={toggleMenu}
         title="ליאם מיוחס/יחידת אוצר/צוות מטמון"
+        data-testid="user-icon"
       >
         <span className="avatar-icon-profile">{userIcon}</span>
       </button>

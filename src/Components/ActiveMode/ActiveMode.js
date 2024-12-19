@@ -8,7 +8,7 @@ const ActiveMode = ({ setIsActiveMode }) => {
 
   return (
     <>
-      <button className="Button" onClick={activeMode}>
+      <button className="Button" onClick={activeMode} data-testid="change-operationality">
         מבצעי
       </button>
     </>

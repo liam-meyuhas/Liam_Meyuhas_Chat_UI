@@ -10,3 +10,8 @@ if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
 
   app.document.head.appendChild(style);
 }
+
+beforeEach(() => {
+  // eslint-disable-next-line no-undef
+  cy.login();
+});

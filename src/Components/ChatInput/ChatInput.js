@@ -68,6 +68,7 @@ function ChatInput({
               "display-text-light": isLightMode,
             }
           )}
+          data-testid="display-text"
           ref={displayTextRef}
           style={{ direction: direction }}
         >

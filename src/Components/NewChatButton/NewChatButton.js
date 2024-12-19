@@ -24,18 +24,18 @@ const NewChatButton = ({ handleReset, setActiveButton }) => {
 
   return (
     <>
-      <button className="new-chat" onClick={openModal}>
+      <button className="new-chat" onClick={openModal} data-testid="new-chat">
         שיחה חדשה
         <RiChatNewLine className="icon-new-chat" />
       </button>
       {showModal && (
         <div className="modal">
-          <div className="modal-content">
+          <div className="modal-content" data-testid="modal-content">
             <p>אתה בטוח שאתה רוצה למחוק את הצאט</p>
-            <button className="Button" onClick={confirmReset}>
+            <button className="Button" onClick={confirmReset} data-testid="confirm-reset">
               כן
             </button>
-            <button className="Button" onClick={closeModal}>
+            <button className="Button" onClick={closeModal} data-testid="cancel-reset">
               לא
             </button>
           </div>

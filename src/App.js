@@ -113,6 +113,7 @@ function App() {
         <button
           className={`sidebar-toggle ${isSidebarOpen ? "" : "close"}`}
           onClick={toggleSidebar}
+          data-testid="sidebar-toggle"
         >
           <PiLineVerticalBold />
         </button>

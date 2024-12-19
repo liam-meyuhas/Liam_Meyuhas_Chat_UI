@@ -1,11 +1,13 @@
-import {chatInput} from '../fixtures/chat/locators';
+import {answer, chatInput, question} from '../fixtures/chat/locators';
+import {message} from '../fixtures/chat/constants';
 
-describe('write message', () => {
-  before(() => {
-    cy.login();
-  })
-  it('visit', () => {
+describe('Write message', () => {
+  it('Writes a message', () => {
     cy.getByDataTestId(chatInput)
-      .type('bbbbbbbbb{enter}')
-  })
-})
+      .type(`${message}{enter}`)
+      .getByDataTestId(question)
+      .should('have.text', message)
+      .getByDataTestId(answer)
+      .should('be.visible');
+  });
+});
