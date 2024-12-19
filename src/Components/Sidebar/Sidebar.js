@@ -1,36 +1,51 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Sidebar.css";
-import clsx from "clsx";
-import NewChatButton from "../NewChatButton/NewChatButton";
-import { FcPrevious } from "react-icons/fc";
+import React, {useEffect, useRef, useState} from 'react';
+import './Sidebar.css';
+import clsx from 'clsx';
+import NewChatButton from '../NewChatButton/NewChatButton';
+import {FcPrevious} from 'react-icons/fc';
+import {dates} from '../../resources/Sidebar';
+import {Button} from '@mui/material';
 
-const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
+const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   const messagesEndRef = useRef(null);
-  const [chatTimeStamp, setChatTimeStamp] = useState([]);
+  const [activeButton, setActiveButton] = useState(null);
 
-  useEffect(() => {
-    const now = new Date();
-
-    setChatTimeStamp([...chatTimeStamp, now]);
-  }, [allChats]);
-
-  const calculateDaysAgo = (timeStamp) => {
+  const calculateDaysAgo = timeStamp => {
     const now = new Date();
     const difference = now - new Date(timeStamp);
-    const daysAgo = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const dayInMilliseconds = 1000 * 60 * 60 * 24;
+    const daysAgo = Math.floor(difference / dayInMilliseconds);
 
-    if (daysAgo >= 60) return "2 Months";
-    if (daysAgo >= 30) return "1 Month";
-    if (daysAgo >= 28) return "4 Weeks";
-    if (daysAgo >= 21) return "3 Weeks";
-    if (daysAgo >= 14) return "2 Weeks";
-    if (daysAgo >= 7) return "1 Week";
+    if (daysAgo >= 60) return dates.twoMonths;
+    if (daysAgo >= 30) return dates.month;
+    if (daysAgo >= 28) return dates.fourWeeks;
+    if (daysAgo >= 21) return dates.threeWeeks;
+    if (daysAgo >= 14) return dates.twoWeeks;
+    if (daysAgo >= 7) return dates.week;
+    if (daysAgo === 1) return dates.yesterday;
+    if (daysAgo === 0) return dates.today;
 
-    return `${daysAgo} Days`;
+    return `לפני ${daysAgo} ימים`;
+  };
+
+  const groupChatsByDay = chats => {
+    return chats.reduce((acc, chat) => {
+      const dayTitle = calculateDaysAgo(chat.timeStamp); // Get the "X days ago" label
+      if (!acc[dayTitle]) {
+        acc[dayTitle] = []; // Create an array for this day if it doesn't exist
+      }
+      acc[dayTitle].push(chat); // Add the chat to the corresponding group
+      return acc;
+    }, {});
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
+  const handleOnClick = ({id, responses}) => {
+    showChat(responses);
+    setActiveButton(id);
   };
 
   useEffect(() => {
@@ -38,24 +53,27 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   }, [allChats]);
 
   return (
-    <div className={clsx("sidebar", { "sidebar-light": isLightMode })}>
+    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
       <div className="sidebar-content">
-        <NewChatButton handleReset={handleReset} />
-        <div
-          className={clsx("button-column", {
-            "button-column-light": isLightMode,
-          })}
-        >
-          {allChats?.map((chat, index) => (
-            <div key={index}>
+        <NewChatButton handleReset={handleReset} setActiveButton={setActiveButton}/>
+        <div>
+          {Object.entries(groupChatsByDay(allChats)).map(([dayTitle, chats]) => (
+            <div key={dayTitle}>
               <span>
-                Previous
-                {calculateDaysAgo(chatTimeStamp[index])}
-                <FcPrevious />
+                {dayTitle}
+                <FcPrevious/>
               </span>
-              <button onClick={() => showChat(chat)} ref={messagesEndRef}>
-                צ'אט
-              </button>
+              {chats.map(chat => (
+                <Button fullWidth={true}
+                        key={chat.id}
+                        variant={activeButton === chat.id ? 'contained' : 'outlined'}
+                        onClick={() => handleOnClick(chat)}
+                        ref={messagesEndRef}
+                        color="secondary"
+                        sx={{margin: '2px', color: isLightMode ? 'black' : 'white', borderWidth: '2px'}}>
+                  צ'אט
+                </Button>
+              ))}
             </div>
           ))}
         </div>
