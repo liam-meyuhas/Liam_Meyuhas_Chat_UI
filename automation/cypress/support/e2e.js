@@ -1,3 +1,4 @@
+import './common/index';
 import './login/index';
 
 const app = window.top;
