@@ -101,9 +101,11 @@ function ChatInput({
             direction === "rtl" ? "input-box" : "input-box-english",
             isLightMode && "input-box-light input-box-english-light"
           )}
-          style={{ direction: direction,
-            width: isFocused ? '500px' : '300px',
-            transition: 'width 0.4s ease-in-out'}}
+          style={{
+            direction: direction,
+            width: isFocused ? "500px" : "300px",
+            transition: "width 0.4s ease-in-out",
+          }}
         />
         <FaRegPaperPlane
           className={clsx(
@@ -117,7 +119,6 @@ function ChatInput({
           )}
         />
       </div>
-      <div>blablabla</div>
     </div>
   );
 }

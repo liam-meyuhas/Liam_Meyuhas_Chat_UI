@@ -40,7 +40,7 @@ function App() {
   const [allChats, setAllChats] = useState([]);
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [id, setId] = useState(1)
+  const [id, setId] = useState(1);
 
   const toggleSidebar = () => {
     setIsSidebarIsOpen(!isSidebarOpen);
@@ -52,20 +52,21 @@ function App() {
         id: id,
         responses: response,
         timeStamp: new Date(),
-      }
-      setId(id + 1)
+      };
+      setId(id + 1);
       setAllChats([chat, ...allChats]);
     }
     setResponse([]);
   };
 
-  const showChat = responses => {
+  const showChat = (responses) => {
     setResponse(responses);
   };
 
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`}>
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
+
       {response.length === 0 && (
         <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
@@ -74,7 +75,7 @@ function App() {
         </header>
       )}
       {response.length === 0 && (
-        <span className="App-header">
+        <span className="botname">
           <h1>{botName}</h1>
         </span>
       )}

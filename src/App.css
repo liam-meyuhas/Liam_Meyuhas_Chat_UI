@@ -9,12 +9,17 @@
   color: white;
 }
 
-.App-header {
+.botname {
   font-size: 1.5rem;
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
+}
+
+.logo-header {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .chatInput-container {

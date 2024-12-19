@@ -1,16 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
-import './Sidebar.css';
-import clsx from 'clsx';
-import NewChatButton from '../NewChatButton/NewChatButton';
-import {FcPrevious} from 'react-icons/fc';
-import {dates} from '../../resources/Sidebar';
-import {Button} from '@mui/material';
+import React, { useEffect, useRef, useState } from "react";
+import "./Sidebar.css";
+import clsx from "clsx";
+import NewChatButton from "../NewChatButton/NewChatButton";
+import { MdOutlineDateRange } from "react-icons/md";
+import { dates } from "../../resources/Sidebar";
+import { Button } from "@mui/material";
 
-const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
+const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   const messagesEndRef = useRef(null);
   const [activeButton, setActiveButton] = useState(null);
 
-  const calculateDaysAgo = timeStamp => {
+  const calculateDaysAgo = (timeStamp) => {
     const now = new Date();
     const difference = now - new Date(timeStamp);
     const dayInMilliseconds = 1000 * 60 * 60 * 24;
@@ -28,22 +28,22 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
     return `לפני ${daysAgo} ימים`;
   };
 
-  const groupChatsByDay = chats => {
+  const groupChatsByDay = (chats) => {
     return chats.reduce((acc, chat) => {
-      const dayTitle = calculateDaysAgo(chat.timeStamp); // Get the "X days ago" label
+      const dayTitle = calculateDaysAgo(chat.timeStamp);
       if (!acc[dayTitle]) {
-        acc[dayTitle] = []; // Create an array for this day if it doesn't exist
+        acc[dayTitle] = [];
       }
-      acc[dayTitle].push(chat); // Add the chat to the corresponding group
+      acc[dayTitle].push(chat);
       return acc;
     }, {});
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleOnClick = ({id, responses}) => {
+  const handleOnClick = ({ id, responses }) => {
     showChat(responses);
     setActiveButton(id);
   };
@@ -53,29 +53,41 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   }, [allChats]);
 
   return (
-    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
+    <div className={clsx("sidebar", { "sidebar-light": isLightMode })}>
       <div className="sidebar-content">
-        <NewChatButton handleReset={handleReset} setActiveButton={setActiveButton}/>
+        <NewChatButton
+          handleReset={handleReset}
+          setActiveButton={setActiveButton}
+        />
         <div>
-          {Object.entries(groupChatsByDay(allChats)).map(([dayTitle, chats]) => (
-            <div key={dayTitle}>
-              <span>
-                {dayTitle}
-                <FcPrevious/>
-              </span>
-              {chats.map(chat => (
-                <Button fullWidth={true}
-                        key={chat.id}
-                        variant={activeButton === chat.id ? 'contained' : 'outlined'}
-                        onClick={() => handleOnClick(chat)}
-                        ref={messagesEndRef}
-                        color="secondary"
-                        sx={{margin: '2px', color: isLightMode ? 'black' : 'white', borderWidth: '2px'}}>
-                  צ'אט
-                </Button>
-              ))}
-            </div>
-          ))}
+          {Object.entries(groupChatsByDay(allChats)).map(
+            ([dayTitle, chats]) => (
+              <div key={dayTitle}>
+                <span>
+                  {dayTitle} <MdOutlineDateRange />
+                </span>
+                {chats.map((chat) => (
+                  <Button
+                    fullWidth={true}
+                    key={chat.id}
+                    variant={
+                      activeButton === chat.id ? "contained" : "outlined"
+                    }
+                    onClick={() => handleOnClick(chat)}
+                    ref={messagesEndRef}
+                    color="secondary"
+                    sx={{
+                      margin: "2px",
+                      color: isLightMode ? "black" : "white",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    צ'אט
+                  </Button>
+                ))}
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
