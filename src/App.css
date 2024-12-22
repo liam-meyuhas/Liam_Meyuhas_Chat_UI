@@ -17,11 +17,6 @@
   align-items: center;
 }
 
-.logo-header {
-  display: flex;
-  justify-content: flex-start;
-}
-
 .chatInput-container {
   width: 100%;
   display: flex;
