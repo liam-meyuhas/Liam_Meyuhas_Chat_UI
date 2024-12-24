@@ -66,14 +66,14 @@ function App() {
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
-      <div className="l">
+      <div className="header-logo">
         <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
           <p className="alpha-name">אלפא</p>
           <span className="beta-tag">Beta</span>
         </header>
       </div>
-      <div className="b">
+      <div className="app-body">
         {response.length === 0 && (
           <span className="botname">
             <h1>{botName}</h1>

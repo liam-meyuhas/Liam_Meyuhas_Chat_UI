@@ -4,13 +4,13 @@
   color: white;
 }
 
-.l {
+.header-logo {
   text-align: center;
   display: flex;
   align-items: flex-start;
   z-index: 999;
 }
-.b {
+.app-body {
   text-align: center;
   display: flex;
   flex-direction: column;
