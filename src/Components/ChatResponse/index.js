@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { SlLike, SlDislike } from "react-icons/sl";
+import { SlLike } from "react-icons/sl";
 import { IoCopyOutline, IoReloadSharp } from "react-icons/io5";
 import clsx from "clsx";
 import "./index.css";
 import ChangeResponse from "../ChangeResponse/ChangeResponse";
 import loading from "../../videos/loading.gif";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-} from "@mui/material";
+import BadComment from "../BadComment/BadComment";
 
 const ChatResponse = ({
   input,
@@ -26,7 +18,6 @@ const ChatResponse = ({
   setShowGif,
 }) => {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setShowGif(true);
@@ -80,21 +71,7 @@ const ChatResponse = ({
             <SlLike />
           </span>
           <span className="icons-negative" title="תגובה גרועה">
-            <SlDislike onClick={() => setOpen(true)} />
-            <Dialog open={open} onClose={() => setOpen(false)}>
-              <DialogTitle>הוסף תגובה רעה</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  This is an example of how you can click an icon to open a
-                  dialog. You can place any content you want here.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={() => setOpen(false)} color="primary">
-                  Close
-                </Button>
-              </DialogActions>
-            </Dialog>
+            <BadComment />
           </span>
           <span className="icons">
             <IoCopyOutline />

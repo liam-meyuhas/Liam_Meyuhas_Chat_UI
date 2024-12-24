@@ -1,12 +1,22 @@
 .App {
+  min-height: 100vh;
+  background-color: #333;
+  color: white;
+}
+
+.l {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  z-index: 999;
+}
+.b {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 50px;
   align-items: center;
-  min-height: 100vh;
-  background-color: #333;
-  color: white;
 }
 
 .botname {
@@ -61,8 +71,9 @@
   top: 50%;
 }
 
-.sidebar-toggle.close {
+.sidebar-toggle.open {
   top: 50%;
+  margin-right: 200px;
 }
 
 .alpha-logo {

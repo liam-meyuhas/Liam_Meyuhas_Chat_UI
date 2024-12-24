@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
@@ -66,64 +66,65 @@ function App() {
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
-
-      {response.length === 0 && (
+      <div className="l">
         <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
           <p className="alpha-name">אלפא</p>
           <span className="beta-tag">Beta</span>
         </header>
-      )}
-      {response.length === 0 && (
-        <span className="botname">
-          <h1>{botName}</h1>
-        </span>
-      )}
-
-      {response.length === 0 && (
-        <Suggestions
-          isLightMode={isLightMode}
-          response={response}
-          setResponse={setResponse}
-          faq={faq}
-        />
-      )}
-      <div className="chatInput-container">
-        <ChatInput
-          response={response}
-          setResponse={setResponse}
-          isLightMode={isLightMode}
-          isActiveMode={isActiveMode}
-          showGif={showGif}
-          setShowGif={setShowGif}
-          faq={faq}
-        />
       </div>
-      <div className="sidebar-app">
-        {isSidebarOpen ? (
-          <Sidebar
-            isLightMode={isLightMode}
-            handleReset={handleReset}
-            allChats={allChats}
-            showChat={showChat}
-          />
-        ) : (
-          ""
+      <div className="b">
+        {response.length === 0 && (
+          <span className="botname">
+            <h1>{botName}</h1>
+          </span>
         )}
-        <button
-          className={`sidebar-toggle ${isSidebarOpen ? "" : "close"}`}
-          onClick={toggleSidebar}
-          data-testid="sidebar-toggle"
-        >
-          <PiLineVerticalBold />
-        </button>
+
+        {response.length === 0 && (
+          <Suggestions
+            isLightMode={isLightMode}
+            response={response}
+            setResponse={setResponse}
+            faq={faq}
+          />
+        )}
+        <div className="chatInput-container">
+          <ChatInput
+            response={response}
+            setResponse={setResponse}
+            isLightMode={isLightMode}
+            isActiveMode={isActiveMode}
+            showGif={showGif}
+            setShowGif={setShowGif}
+            faq={faq}
+          />
+        </div>
+        <div className="sidebar-app">
+          {isSidebarOpen ? (
+            <Sidebar
+              isLightMode={isLightMode}
+              handleReset={handleReset}
+              allChats={allChats}
+              showChat={showChat}
+            />
+          ) : (
+            ""
+          )}
+          <button
+            className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`}
+            onClick={toggleSidebar}
+            data-testid="sidebar-toggle"
+          >
+            <PiLineVerticalBold />
+          </button>
+        </div>
+        <UserIcon
+          setIsLightMode={setIsLightMode}
+          setBotName={setBotName}
+          botName={botName}
+          setIsActiveMode={setIsActiveMode}
+        />
       </div>
-      <UserIcon
-        setIsLightMode={setIsLightMode}
-        setBotName={setBotName}
-        botName={botName}
-        setIsActiveMode={setIsActiveMode}
-      />
     </div>
   );
 }

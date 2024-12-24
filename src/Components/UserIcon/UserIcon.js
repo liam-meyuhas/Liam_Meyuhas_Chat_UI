@@ -29,6 +29,7 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
       >
         <span className="avatar-icon-profile">{userIcon}</span>
       </button>
+
       {menuOpen && (
         <div className="user-container">
           <button className="Button" onClick={toggleMode}>

@@ -23,7 +23,6 @@
   color: #aaa;
   cursor: pointer;
   left: 10px;
-  margin-bottom: 30px;
 }
 
 .input-icon:hover {
@@ -39,7 +38,6 @@
   border: 2px solid #201f1f;
   background-color: #201f1f;
   color: white;
-  margin-bottom: 30px;
 }
 
 .input-box-light {
@@ -57,7 +55,6 @@
   color: #aaa;
   cursor: pointer;
   right: 10px;
-  margin-bottom: 30px;
 }
 
 .input-icon-english:hover {
@@ -74,7 +71,6 @@
   border: 2px solid #201f1f;
   background-color: #201f1f;
   color: white;
-  margin-bottom: 30px;
 }
 
 .input-box-english-light {

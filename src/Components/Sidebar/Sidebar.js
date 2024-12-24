@@ -59,7 +59,7 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
           handleReset={handleReset}
           setActiveButton={setActiveButton}
         />
-        <div>
+        <div className="button-column">
           {Object.entries(groupChatsByDay(allChats)).map(
             ([dayTitle, chats]) => (
               <div key={dayTitle}>
