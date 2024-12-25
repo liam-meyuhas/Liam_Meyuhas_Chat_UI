@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./SplashScreen.css";
-import israelGif from "../../videos/israel.gif";
+import alpha from "../../videos/alpha.gif";
 
 const SplashScreen = ({ isLoading, setIsLoading }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 6000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -15,7 +15,7 @@ const SplashScreen = ({ isLoading, setIsLoading }) => {
 
   return (
     <div className="splash-screen">
-      <img src={`${israelGif}`} alt="Israel-Gif" className="im"></img>
+      <img src={`${alpha}`} alt="alpha-Gif" className="gif-size"></img>
     </div>
   );
 };

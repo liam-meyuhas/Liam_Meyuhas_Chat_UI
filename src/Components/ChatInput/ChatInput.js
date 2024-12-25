@@ -18,7 +18,6 @@ function ChatInput({
   const displayTextRef = useRef(null);
   const [direction, setDirection] = useState("rtl");
   const [isFocused, setIsFocused] = useState(false);
-  const [isResizeable, setIsResizeable] = useState(false);
 
   const handleLanguageDirection = (value) => {
     if (value === "") {

@@ -42,10 +42,10 @@
   background-color: #c0281c;
   color: white;
   font-size: 10px;
-  margin-right: 10px;
   padding: 2px 6px;
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(37, 150, 158, 0.3);
+  margin-right: -20px;
 }
 
 .beta-tag.light {
@@ -77,23 +77,7 @@
 }
 
 .alpha-logo {
-  width: 80px;
-  animation: pulse 4s infinite;
-}
-
-.alpha-name {
-  font-size: 30px;
-  animation: pulse 4s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
+  width: 120px;
 }
 
 .sidebar-app {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
@@ -32,15 +32,27 @@ function App() {
     "תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח": <VideoResponse />,
   });
 
-  const [isLightMode, setIsLightMode] = useState(true);
   const [response, setResponse] = useState([]);
   const [isSidebarOpen, setIsSidebarIsOpen] = useState(false);
-  const [botName, setBotName] = useState("כוכב נולד");
   const [isActiveMode, setIsActiveMode] = useState(false);
   const [allChats, setAllChats] = useState([]);
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState(1);
+  const [botName, setBotName] = useState(null);
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/botname")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((name) => setBotName(name))
+      .catch((error) => console.error("Error fetching botname:", error));
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarIsOpen(!isSidebarOpen);
@@ -69,14 +81,13 @@ function App() {
       <div className="header-logo">
         <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
-          <p className="alpha-name">אלפא</p>
           <span className="beta-tag">Beta</span>
         </header>
       </div>
       <div className="app-body">
-        {response.length === 0 && (
+        {response.length === 0 && botName && (
           <span className="botname">
-            <h1>{botName}</h1>
+            <h1>{botName.name}</h1>
           </span>
         )}
 

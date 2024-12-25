@@ -13,7 +13,9 @@ function Suggestions({ isLightMode, faq, setResponse, response }) {
 
   return (
     <div
-      className={clsx("suggestions-container", { "light-mode": isLightMode })}
+      className={clsx("suggestions-container", {
+        "light-mode": isLightMode,
+      })}
     >
       <button id="pen" className="suggestion purple" onClick={handleIconClick}>
         <span>רעיון לשאלה</span>

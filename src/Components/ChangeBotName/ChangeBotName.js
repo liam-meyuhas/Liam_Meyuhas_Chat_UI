@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../GlobalCss/Modals.css";
 import "./ChangeBotName.css";
 
 const ChangeBotName = ({ setBotName, botName }) => {
   const [showModal, setShowModal] = useState(false);
-  const [newBotName, setNewBotName] = useState(botName);
+  const [newBotName, setNewBotName] = useState("");
 
   const openModal = () => {
     setShowModal(true);
@@ -13,8 +13,28 @@ const ChangeBotName = ({ setBotName, botName }) => {
   const closeModal = () => {
     setShowModal(false);
   };
+
   const save = () => {
-    setBotName(newBotName);
+    fetch("http://localhost:5000/api/botname", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: newBotName }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error updating bot name");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBotName(data.name);
+        setNewBotName("");
+      })
+      .catch((error) => {
+        console.error("Error updating botname:", error);
+      });
     setShowModal(false);
   };
   return (
