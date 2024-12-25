@@ -32,7 +32,7 @@ function App() {
     "תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח": <VideoResponse />,
   });
 
-  const [isLightMode, setIsLightMode] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(true);
   const [response, setResponse] = useState([]);
   const [isSidebarOpen, setIsSidebarIsOpen] = useState(false);
   const [botName, setBotName] = useState("כוכב נולד");
