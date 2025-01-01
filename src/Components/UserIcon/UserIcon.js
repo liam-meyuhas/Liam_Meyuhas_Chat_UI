@@ -35,7 +35,7 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
           <button className="Button" onClick={toggleMode}>
             ערכת נושא
           </button>
-          <ChangeBotName setBotName={setBotName} botName={botName} />
+          <ChangeBotName setBotName={setBotName} />
           <Avatar setUserIcon={setUserIcon} />
           <ActiveMode setIsActiveMode={setIsActiveMode} />
         </div>

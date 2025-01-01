@@ -1,5 +1,5 @@
 .sidebar {
-  width: 200px;
+  width: 15%;
   background-color: #201f1f;
   color: white;
   padding: 15px;
@@ -36,8 +36,8 @@
 
 .new-chat {
   margin-bottom: 10px;
-  width: 160px;
-  height: 50px;
+  width: 90%;
+  height: 100%;
   font-size: 20px;
   background-color: purple;
   color: white;

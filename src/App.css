@@ -21,10 +21,6 @@
 
 .botname {
   font-size: 1.5rem;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
 }
 
 .chatInput-container {
@@ -73,7 +69,7 @@
 
 .sidebar-toggle.open {
   top: 50%;
-  margin-right: 200px;
+  margin-right: 15%;
 }
 
 .alpha-logo {

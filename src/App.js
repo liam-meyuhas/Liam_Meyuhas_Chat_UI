@@ -40,7 +40,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState(1);
   const [botName, setBotName] = useState(null);
-  const [isLightMode, setIsLightMode] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/botname")
@@ -90,15 +90,16 @@ function App() {
             <h1>{botName.name}</h1>
           </span>
         )}
-
-        {response.length === 0 && (
-          <Suggestions
-            isLightMode={isLightMode}
-            response={response}
-            setResponse={setResponse}
-            faq={faq}
-          />
-        )}
+        <>
+          {response.length === 0 && (
+            <Suggestions
+              isLightMode={isLightMode}
+              response={response}
+              setResponse={setResponse}
+              faq={faq}
+            />
+          )}
+        </>
         <div className="chatInput-container">
           <ChatInput
             response={response}
