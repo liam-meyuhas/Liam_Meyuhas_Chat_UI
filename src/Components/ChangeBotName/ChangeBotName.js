@@ -32,7 +32,7 @@ const ChangeBotName = ({ setBotName }) => {
         fetch("http://localhost:5000/api/botname")
           .then((response) => response.json())
           .then((name) => {
-            setBotName(name);
+            setBotName(name.name);
             setNewBotName("");
           })
           .catch((error) => {
@@ -42,6 +42,7 @@ const ChangeBotName = ({ setBotName }) => {
       .catch((error) => {
         console.error("Error updating botname:", error);
       });
+
     setShowModal(false);
   };
 

@@ -39,8 +39,32 @@ function App() {
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState(1);
-  const [botName, setBotName] = useState(null);
   const [isLightMode, setIsLightMode] = useState(true);
+  const [botName, setBotName] = useState("");
+
+  const initalUserPath = "ליאם מיוחס / יחידת אוצר / צוות מטמון";
+
+  const initalBotName = (initalUserPath) => {
+    const userPath = initalUserPath.split("/");
+
+    return userPath[0].trim();
+  };
+
+  const initialName = initalBotName(initalUserPath);
+
+  const [timeOfDay, setTimeOfDay] = useState("");
+
+  const getTimeOfDay = () => {
+    const hours = new Date().getHours();
+
+    if (hours >= 0 && hours < 12) {
+      setTimeOfDay(" בוקר טוב ");
+    } else if (hours >= 12 && hours < 18) {
+      setTimeOfDay(" צהריים טובים ");
+    } else {
+      setTimeOfDay(" ערב טוב ");
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/api/botname")
@@ -50,8 +74,15 @@ function App() {
         }
         return response.json();
       })
-      .then((name) => setBotName(name))
+      .then((data) => {
+        const botName = data.name || initialName;
+        setBotName(botName);
+      })
       .catch((error) => console.error("Error fetching botname:", error));
+
+    getTimeOfDay();
+    const intervalId = setInterval(getTimeOfDay, 60000);
+    return () => clearInterval(intervalId);
   }, []);
 
   const toggleSidebar = () => {
@@ -87,7 +118,10 @@ function App() {
       <div className="app-body">
         {response.length === 0 && botName && (
           <span className="botname">
-            <h1>{botName.name}</h1>
+            <h1>
+              {timeOfDay}
+              {botName}...
+            </h1>
           </span>
         )}
         <>
