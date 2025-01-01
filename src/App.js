@@ -41,6 +41,7 @@ function App() {
   const [id, setId] = useState(1);
   const [isLightMode, setIsLightMode] = useState(true);
   const [botName, setBotName] = useState("");
+  const [fname, setFname] = useState("");
 
   const initalUserPath = "ליאם מיוחס / יחידת אוצר / צוות מטמון";
 
@@ -75,8 +76,8 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        const botName = data.name || initialName;
-        setBotName(botName);
+        setBotName(data.name); // שמירת שם הבוט
+        setFname(data.fname); // שמירת fname
       })
       .catch((error) => console.error("Error fetching botname:", error));
 
@@ -116,11 +117,11 @@ function App() {
         </header>
       </div>
       <div className="app-body">
-        {response.length === 0 && botName && (
+        {response.length === 0 && (botName || fname) && (
           <span className="botname">
             <h1>
               {timeOfDay}
-              {botName}...
+              {botName ? botName : fname}...
             </h1>
           </span>
         )}
