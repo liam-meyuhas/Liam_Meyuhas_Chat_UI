@@ -14,3 +14,11 @@
   background: none;
   border: none;
 }
+
+.alpha-gif-loading {
+  width: 150px;
+  height: 150px;
+  background: none;
+  border: 2px solid gray;
+  border-radius: 30px;
+}

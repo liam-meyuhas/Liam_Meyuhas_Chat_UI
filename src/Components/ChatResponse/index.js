@@ -5,6 +5,7 @@ import clsx from "clsx";
 import "./index.css";
 import ChangeResponse from "../ChangeResponse/ChangeResponse";
 import loading from "../../videos/loading.gif";
+import alphaloop from "../../videos/alphaloop.gif";
 import BadComment from "../BadComment/BadComment";
 
 const ChatResponse = ({
@@ -24,7 +25,7 @@ const ChatResponse = ({
     const timerGif = setTimeout(() => {
       setShowGif(false);
       setShowAnswer(true);
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timerGif);
   }, [response]);
 
@@ -48,9 +49,17 @@ const ChatResponse = ({
         {input}
       </div>
 
-      {!showAnswer && showGif && (
-        <img src={`${loading}`} alt="loading-Gif" className="gif-loading"></img>
-      )}
+      {!showAnswer &&
+        showGif &&
+        (typeof answer === "string" ? (
+          <img src={loading} alt="loading-Gif" className="gif-loading" />
+        ) : (
+          <img
+            src={alphaloop}
+            alt="loading-Gif"
+            className="alpha-gif-loading"
+          />
+        ))}
 
       {showAnswer && (
         <>
