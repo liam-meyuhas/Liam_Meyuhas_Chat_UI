@@ -1,12 +1,12 @@
 .new-chat {
   margin-bottom: 10px;
-  width: 160px;
-  height: 50px;
+  width: 90%;
+  height: 100%;
   font-size: 20px;
   background-color: #6633cc;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   align-items: center;
   padding: 10px;
   cursor: pointer;

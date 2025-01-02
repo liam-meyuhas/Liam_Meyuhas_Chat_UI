@@ -29,21 +29,13 @@ const ChangeBotName = ({ setBotName }) => {
         return response.json();
       })
       .then((data) => {
-        fetch("http://localhost:5000/api/botname")
-          .then((response) => response.json())
-          .then((name) => {
-            setBotName(name.name);
-            setNewBotName("");
-          })
-          .catch((error) => {
-            console.error("Error fetching bot name:", error);
-          });
+        setBotName(data.bot.name);
+        setNewBotName("");
+        setShowModal(false);
       })
       .catch((error) => {
         console.error("Error updating botname:", error);
       });
-
-    setShowModal(false);
   };
 
   return (

@@ -39,7 +39,7 @@ function App() {
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState(1);
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState();
   const [botName, setBotName] = useState("");
   const [fname, setFname] = useState("");
 
@@ -68,18 +68,27 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/botname")
+    fetch("http://localhost:5000/api/botname", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fname: initialName }),
+    })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Error updating full name");
         }
         return response.json();
       })
       .then((data) => {
-        setBotName(data.name); // שמירת שם הבוט
-        setFname(data.fname); // שמירת fname
+        setBotName(data.bot.name);
+        setFname(data.bot.fname);
+        setIsLightMode(data.bot.isLightMode);
       })
-      .catch((error) => console.error("Error fetching botname:", error));
+      .catch((error) => {
+        console.error("Error updating full name:", error);
+      });
 
     getTimeOfDay();
     const intervalId = setInterval(getTimeOfDay, 60000);
@@ -168,7 +177,6 @@ function App() {
         <UserIcon
           setIsLightMode={setIsLightMode}
           setBotName={setBotName}
-          botName={botName}
           setIsActiveMode={setIsActiveMode}
         />
       </div>

@@ -33,25 +33,3 @@
   background-color: #888;
   border-radius: 20px;
 }
-
-.new-chat {
-  margin-bottom: 10px;
-  width: 90%;
-  height: 100%;
-  font-size: 20px;
-  background-color: purple;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-}
-.new-chat:hover {
-  background-color: rgb(197, 21, 197);
-}
-
-.icon-new-chat {
-  margin-right: 5px;
-  align-items: center;
-}
