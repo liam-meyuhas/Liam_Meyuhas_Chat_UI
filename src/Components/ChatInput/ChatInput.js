@@ -13,6 +13,7 @@ function ChatInput({
   faq,
   showGif,
   setShowGif,
+  fname,
 }) {
   const [input, setInput] = useState("");
   const displayTextRef = useRef(null);
@@ -45,6 +46,28 @@ function ChatInput({
       const answer = faq[input] || "לא מצאתי תשובה לשאלה שלך.";
 
       const newObject = { input: input, answer: answer };
+
+      const sendToServer = async () => {
+        try {
+          const response = await fetch("http://localhost:5000/QnA", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              question: input,
+              answer: answer,
+              date: new Date().toLocaleString("he-IL", { hour12: false }),
+            }),
+          });
+          const data = await response.json();
+          console.log("QnA sent successfully:", data);
+        } catch (error) {
+          console.error("Error sending QnA:", error);
+        }
+      };
+
+      sendToServer();
 
       setResponse([...response, newObject]);
 
@@ -81,6 +104,7 @@ function ChatInput({
               faq={faq}
               showGif={showGif}
               setShowGif={setShowGif}
+              fname={fname}
             />
           ))}
         </div>

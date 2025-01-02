@@ -153,6 +153,7 @@ function App() {
             showGif={showGif}
             setShowGif={setShowGif}
             faq={faq}
+            fname={fname}
           />
         </div>
         <div className="sidebar-app">

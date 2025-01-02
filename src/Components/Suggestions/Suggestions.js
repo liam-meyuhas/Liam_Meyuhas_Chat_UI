@@ -8,6 +8,28 @@ function Suggestions({ isLightMode, faq, setResponse, response }) {
       answer: faq[e.target.textContent],
     };
 
+    const sendToServer = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/QnA", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            question: e.target.textContent,
+            answer: faq[e.target.textContent],
+            date: new Date().toLocaleString("he-IL", { hour12: false }),
+          }),
+        });
+        const data = await response.json();
+        console.log("QnA sent successfully:", data);
+      } catch (error) {
+        console.error("Error sending QnA:", error);
+      }
+    };
+
+    sendToServer();
+
     setResponse([...response, newObject]);
   };
 

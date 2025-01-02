@@ -5,28 +5,92 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
+  TextField,
+  Typography,
+  Box,
 } from "@mui/material";
 
-const BadComment = () => {
+const BadComment = ({ fname }) => {
   const [open, setOpen] = useState(false);
+  const [comment, setComment] = useState("");
+
+  const handleCommentChange = (event) => setComment(event.target.value);
+
+  const handleClose = () => {
+    setOpen(false);
+    setComment("");
+  };
+
+  const handleSubmit = () => {
+    const sendToServer = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/BadComment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            comment: comment,
+          }),
+        });
+        const data = await response.json();
+        console.log("QnA sent successfully:", data);
+      } catch (error) {
+        console.error("Error sending QnA:", error);
+      }
+    };
+
+    sendToServer();
+    handleClose();
+  };
 
   return (
     <>
       <SlDislike onClick={() => setOpen(true)} />
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>הוסף תגובה רעה</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            This is an example of how you can click an icon to open a dialog.
-            You can place any content you want here.
-          </DialogContentText>
+          <Typography variant="body1" gutterBottom>
+            <strong>שם:</strong> {fname}
+          </Typography>
+
+          <Typography variant="body1" gutterBottom>
+            <strong>תאריך:</strong> {new Date().toLocaleString()}
+          </Typography>
+
+          <Typography variant="body1" gutterBottom align="right">
+            <strong>תגובה:</strong>
+          </Typography>
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            multiline
+            rows={5}
+            value={comment}
+            onChange={handleCommentChange}
+            sx={{
+              width: "300px",
+            }}
+          />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} color="primary">
-            Close
-          </Button>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Button onClick={handleClose} color="primary">
+              ביטול
+            </Button>
+            <Button onClick={handleSubmit} color="primary">
+              שלח
+            </Button>
+          </Box>
         </DialogActions>
       </Dialog>
     </>
