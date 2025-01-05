@@ -1,25 +1,26 @@
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   min-height: 100vh;
   background-color: #333;
   color: white;
 }
 
-.botname {
-  font-size: 1.5rem;
+.header-logo {
+  text-align: center;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
+  align-items: flex-start;
+  z-index: 999;
+}
+.app-body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
   align-items: center;
 }
 
-.logo-header {
-  display: flex;
-  justify-content: flex-start;
+.botname {
+  font-size: 1.5rem;
 }
 
 .chatInput-container {
@@ -37,10 +38,10 @@
   background-color: #c0281c;
   color: white;
   font-size: 10px;
-  margin-right: 10px;
   padding: 2px 6px;
   border-radius: 3px;
   box-shadow: 0 2px 6px rgba(37, 150, 158, 0.3);
+  margin-right: -20px;
 }
 
 .beta-tag.light {
@@ -66,28 +67,13 @@
   top: 50%;
 }
 
-.sidebar-toggle.close {
+.sidebar-toggle.open {
   top: 50%;
+  margin-right: 15%;
 }
 
 .alpha-logo {
-  width: 80px;
-  animation: pulse 4s infinite;
-}
-
-.alpha-name {
-  font-size: 30px;
-  animation: pulse 4s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
+  width: 120px;
 }
 
 .sidebar-app {

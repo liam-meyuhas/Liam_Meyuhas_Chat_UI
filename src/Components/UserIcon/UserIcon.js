@@ -5,7 +5,7 @@ import ChangeBotName from "../ChangeBotName/ChangeBotName";
 import Avatar from "../Avatar/Avatar";
 import ActiveMode from "../ActiveMode/ActiveMode";
 
-const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
+const UserIcon = ({ setIsLightMode, setBotName, setIsActiveMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMode = () => {
@@ -30,12 +30,13 @@ const UserIcon = ({ setIsLightMode, setBotName, botName, setIsActiveMode }) => {
       >
         <span className="avatar-icon-profile">{userIcon}</span>
       </button>
+
       {menuOpen && (
         <div className="user-container">
           <button className="Button" onClick={toggleMode}>
             ערכת נושא
           </button>
-          <ChangeBotName setBotName={setBotName} botName={botName} />
+          <ChangeBotName setBotName={setBotName} />
           <Avatar setUserIcon={setUserIcon} />
           <ActiveMode setIsActiveMode={setIsActiveMode} />
         </div>

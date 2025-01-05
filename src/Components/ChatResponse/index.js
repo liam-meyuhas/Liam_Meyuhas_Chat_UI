@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { SlLike, SlDislike } from "react-icons/sl";
+import { SlLike } from "react-icons/sl";
 import { IoCopyOutline, IoReloadSharp } from "react-icons/io5";
 import clsx from "clsx";
 import "./index.css";
 import ChangeResponse from "../ChangeResponse/ChangeResponse";
 import loading from "../../videos/loading.gif";
+import alphaloop from "../../videos/alphaloop.gif";
+import BadComment from "../BadComment/BadComment";
 
 const ChatResponse = ({
   input,
@@ -15,15 +17,15 @@ const ChatResponse = ({
   faq,
   showGif,
   setShowGif,
+  fname,
 }) => {
   const [showAnswer, setShowAnswer] = useState(false);
-
   useEffect(() => {
     setShowGif(true);
     const timerGif = setTimeout(() => {
       setShowGif(false);
       setShowAnswer(true);
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timerGif);
   }, [response]);
 
@@ -47,9 +49,17 @@ const ChatResponse = ({
         <span data-testid='question'>{input}</span>
       </div>
 
-      {!showAnswer && showGif && (
-        <img src={`${loading}`} alt="loading-Gif" className="gif-loading"></img>
-      )}
+      {!showAnswer &&
+        showGif &&
+        (typeof answer === "string" ? (
+          <img src={loading} alt="loading-Gif" className="gif-loading" />
+        ) : (
+          <img
+            src={alphaloop}
+            alt="loading-Gif"
+            className="alpha-gif-loading"
+          />
+        ))}
 
       {showAnswer && (
         <>
@@ -70,7 +80,7 @@ const ChatResponse = ({
             <SlLike />
           </span>
           <span className="icons-negative" title="תגובה גרועה">
-            <SlDislike />
+            <BadComment fname={fname} />
           </span>
           <span className="icons">
             <IoCopyOutline />
