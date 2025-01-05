@@ -1,17 +1,16 @@
-import { useState } from "react";
-// import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
-import UserIcon from './Components/UserIcon/UserIcon';
-import ImageResponse from './Components/ImageResponse/ImageResponse';
-import VideoResponse from './Components/VideoResponse/VideoResponse';
-import SplashScreen from './Components/SplashScreen/SplashScreen';
-import Suggestions from './Components/Suggestions/Suggestions';
-import ChatInput from './Components/ChatInput/ChatInput';
-import Sidebar from './Components/Sidebar/Sidebar';
-import {PiLineVerticalBold} from 'react-icons/pi';
+import Suggestions from "./Components/Suggestions/Suggestions";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import { PiLineVerticalBold } from "react-icons/pi";
+import UserIcon from "./Components/UserIcon/UserIcon";
+import ImageResponse from "./Components/ImageResponse/ImageResponse";
+import VideoResponse from "./Components/VideoResponse/VideoResponse";
+import SplashScreen from "./Components/SplashScreen/SplashScreen";
 
 function App() {
-  // const [name, setName] = useState([]);
   const [faq, setFaq] = useState({
     "What time is it?": "The current time is...",
     "מה מזג האוויר?": "מזג האוויר כרגע הוא...",
@@ -63,12 +62,7 @@ function App() {
   const showChat = (responses) => {
     setResponse(responses);
   };
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3001/getUsers")
-  //     .then((name) => setName(name.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
