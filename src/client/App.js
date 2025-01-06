@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import ChatInput from "./Components/ChatInput/ChatInput";
-import alpha from "./images/alpha.png";
-import Suggestions from "./Components/Suggestions/Suggestions";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import { PiLineVerticalBold } from "react-icons/pi";
-import UserIcon from "./Components/UserIcon/UserIcon";
-import ImageResponse from "./Components/ImageResponse/ImageResponse";
-import VideoResponse from "./Components/VideoResponse/VideoResponse";
-import SplashScreen from "./Components/SplashScreen/SplashScreen";
+import './App.css';
+import ChatInput from './Components/ChatInput/ChatInput';
+import alpha from './images/alpha.png';
+import Suggestions from './Components/Suggestions/Suggestions';
+import Sidebar from './Components/Sidebar/Sidebar';
+import {PiLineVerticalBold} from 'react-icons/pi';
+import UserIcon from './Components/UserIcon/UserIcon';
+import ImageResponse from './Components/ImageResponse/ImageResponse';
+import VideoResponse from './Components/VideoResponse/VideoResponse';
+import SplashScreen from './Components/SplashScreen/SplashScreen';
 
 function App() {
   const [faq, setFaq] = useState({
