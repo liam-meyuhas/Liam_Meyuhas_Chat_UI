@@ -1,34 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Sidebar.css";
-import clsx from "clsx";
-import NewChatButton from "../NewChatButton/NewChatButton";
-import { MdOutlineDateRange } from "react-icons/md";
-import { dates } from "../../resources/Sidebar";
-import { Button } from "@mui/material";
+import React, {useEffect, useRef, useState} from 'react';
+import './Sidebar.css';
+import clsx from 'clsx';
+import NewChatButton from '../NewChatButton/NewChatButton';
+import {MdOutlineDateRange} from 'react-icons/md';
+import {dates} from '../../resources/Sidebar';
+import {Button} from '@mui/material';
 
-const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
+const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   const messagesEndRef = useRef(null);
   const [activeButton, setActiveButton] = useState(null);
 
   const calculateDaysAgo = timeStamp => {
-    const now = new Date();
-    const difference = now - new Date(timeStamp);
-    const dayInMilliseconds = 1000 * 60 * 60 * 24;
-    const daysAgo = Math.floor(difference / dayInMilliseconds);
+    const difference = new Date(Date.now() - timeStamp);
 
-    if (daysAgo >= 60) return dates.twoMonths;
-    if (daysAgo >= 30) return dates.month;
-    if (daysAgo >= 28) return dates.fourWeeks;
-    if (daysAgo >= 21) return dates.threeWeeks;
-    if (daysAgo >= 14) return dates.twoWeeks;
-    if (daysAgo >= 7) return dates.week;
-    if (daysAgo === 1) return dates.yesterday;
-    if (daysAgo === 0) return dates.today;
+    if (difference.getMonth() >= 2) return dates.twoMonths;
+    if (difference.getMonth() >= 1) return dates.month;
+    if (difference.getDate() >= 28) return dates.fourWeeks;
+    if (difference.getDate() >= 21) return dates.threeWeeks;
+    if (difference.getDate() >= 14) return dates.twoWeeks;
+    if (difference.getDate() >= 7) return dates.week;
+    if (difference.getDate() === 2) return dates.yesterday;
+    if (difference.getDate() === 1) return dates.today;
 
-    return `לפני ${daysAgo} ימים`;
+    return `לפני ${difference.getDay()} ימים`;
   };
 
-  const groupChatsByDay = (chats) => {
+  const groupChatsByDay = chats => {
     return chats.reduce((acc, chat) => {
       const dayTitle = calculateDaysAgo(chat.timeStamp);
       if (!acc[dayTitle]) {
@@ -40,10 +37,10 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({behavior: 'smooth'});
   };
 
-  const handleOnClick = ({ id, responses }) => {
+  const handleOnClick = ({id, responses}) => {
     showChat(responses);
     setActiveButton(id);
   };
@@ -53,7 +50,7 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   }, [allChats]);
 
   return (
-    <div className={clsx("sidebar", { "sidebar-light": isLightMode })}>
+    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
       <div className="sidebar-content">
         <NewChatButton
           handleReset={handleReset}
@@ -64,22 +61,22 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
             ([dayTitle, chats]) => (
               <div key={dayTitle}>
                 <span>
-                  {dayTitle} <MdOutlineDateRange />
+                  {dayTitle} <MdOutlineDateRange/>
                 </span>
                 {chats.map((chat) => (
                   <Button
-                    fullWidth={true}
+                    fullWidth
                     key={chat.id}
                     variant={
-                      activeButton === chat.id ? "contained" : "outlined"
+                      activeButton === chat.id ? 'contained' : 'outlined'
                     }
                     onClick={() => handleOnClick(chat)}
                     ref={messagesEndRef}
                     color="secondary"
                     sx={{
-                      margin: "2px",
-                      color: isLightMode ? "black" : "white",
-                      borderWidth: "2px",
+                      margin: '2px',
+                      color: isLightMode ? 'black' : 'white',
+                      borderWidth: '2px'
                     }}
                     data-testid="old-chat"
                   >
