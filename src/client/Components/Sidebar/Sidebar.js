@@ -10,7 +10,7 @@ const Sidebar = ({ isLightMode, handleReset, allChats, showChat }) => {
   const messagesEndRef = useRef(null);
   const [activeButton, setActiveButton] = useState(null);
 
-  const calculateDaysAgo = (timeStamp) => {
+  const calculateDaysAgo = timeStamp => {
     const now = new Date();
     const difference = now - new Date(timeStamp);
     const dayInMilliseconds = 1000 * 60 * 60 * 24;
