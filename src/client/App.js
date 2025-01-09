@@ -9,27 +9,29 @@ import UserIcon from './Components/UserIcon/UserIcon';
 import ImageResponse from './Components/ImageResponse/ImageResponse';
 import VideoResponse from './Components/VideoResponse/VideoResponse';
 import SplashScreen from './Components/SplashScreen/SplashScreen';
+import {Box, ThemeProvider} from '@mui/material';
+import {darkTheme, lightTheme} from './themes';
 
 function App() {
   const [faq, setFaq] = useState({
-    "What time is it?": "The current time is...",
-    "מה מזג האוויר?": "מזג האוויר כרגע הוא...",
-    "What is your name?": "My name is Alpha",
-    "מהי בירת ישראל?": "בירת ישראל היא ירושלים",
-    "איך קוראים לך?": "השם שלי הוא אלפא",
-    "What is the capital of Israel?": "The capital of Israel is Jerusalem.",
-    "תן לי רעיון לאפליקציה":
-      "מה דעתך על אפליקציה לארגון מטלות יומית עם תזכורות חכמות?",
-    "היכרות עם כוכב נולד":
-      "כוכב נולד הוא העוזר האישי שלך שמיועד להעשיר את חוויית השימוש שלך ולספק מידע מגוון.",
-    "למה כדאי לי להשתמש בכוכב נולד":
-      "כוכב נולד הוא העוזר האישי המושלם, המספק מידע, עוזר במשימות יומיות, ומציע רעיונות והשראה בכל נושא.",
-    "רעיון לשאלה": "מה דעתך על השאלה: 'איך כדאי להתכונן לריאיון עבודה?'",
-    "תייצר לי תמונה של שועל מטייל ביער, צבעוני, זווית צילום רחבה": (
-      <ImageResponse />
+    'What time is it?': 'The current time is...',
+    'מה מזג האוויר?': 'מזג האוויר כרגע הוא...',
+    'What is your name?': 'My name is Alpha',
+    'מהי בירת ישראל?': 'בירת ישראל היא ירושלים',
+    'איך קוראים לך?': 'השם שלי הוא אלפא',
+    'What is the capital of Israel?': 'The capital of Israel is Jerusalem.',
+    'תן לי רעיון לאפליקציה':
+      'מה דעתך על אפליקציה לארגון מטלות יומית עם תזכורות חכמות?',
+    'היכרות עם כוכב נולד':
+      'כוכב נולד הוא העוזר האישי שלך שמיועד להעשיר את חוויית השימוש שלך ולספק מידע מגוון.',
+    'למה כדאי לי להשתמש בכוכב נולד':
+      'כוכב נולד הוא העוזר האישי המושלם, המספק מידע, עוזר במשימות יומיות, ומציע רעיונות והשראה בכל נושא.',
+    'רעיון לשאלה': 'מה דעתך על השאלה: \'איך כדאי להתכונן לריאיון עבודה?\'',
+    'תייצר לי תמונה של שועל מטייל ביער, צבעוני, זווית צילום רחבה': (
+      <ImageResponse/>
     ),
-    "כתוב לי קוד בפייתון": `('ברוכים הבאים לכוכב נולד⭐')print //הפקודה תדפיס ברוכים הבאים לכוכב נולד⭐`,
-    "תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח": <VideoResponse />,
+    'כתוב לי קוד בפייתון': `('ברוכים הבאים לכוכב נולד⭐')print //הפקודה תדפיס ברוכים הבאים לכוכב נולד⭐`,
+    'תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח': <VideoResponse/>
   });
 
   const [response, setResponse] = useState([]);
@@ -104,7 +106,7 @@ function App() {
       const chat = {
         id: id,
         responses: response,
-        timeStamp: new Date(),
+        timeStamp: new Date()
       };
       setId(id + 1);
       setAllChats([chat, ...allChats]);
@@ -112,18 +114,26 @@ function App() {
     setResponse([]);
   };
 
-  const showChat = (responses) => {
+  const showChat = responses => {
     setResponse(responses);
   };
 
   return (
-    <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
-      <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
+    <ThemeProvider theme={isLightMode ? lightTheme : darkTheme}>
+      <Box sx={{
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        minHeight: '100vh'
+      }} data-testid="app">
+        <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading}/>
       <div className="header-logo">
-        <header className="logo">
-          <img src={alpha} alt="alpha Logo" className="alpha-logo" />
-          <span className="beta-tag">Beta</span>
-        </header>
+          <header className="logo">
+            <img src={alpha} alt="alpha Logo" className="alpha-logo"/>
+            <span className="beta-tag">Beta</span>
+          </header>
       </div>
       <div className="app-body">
         {response.length === 0 && (botName || fname) && (
@@ -165,23 +175,24 @@ function App() {
               showChat={showChat}
             />
           ) : (
-            ""
+            ''
           )}
           <button
             className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`}
             onClick={toggleSidebar}
             data-testid="sidebar-toggle"
           >
-            <PiLineVerticalBold />
+            <PiLineVerticalBold/>
           </button>
         </div>
         <UserIcon
           setIsLightMode={setIsLightMode}
           setBotName={setBotName}
+          botName={botName}
           setIsActiveMode={setIsActiveMode}
         />
-      </div>
-    </div>
+      </Box>
+    </ThemeProvider>
   );
 }
 

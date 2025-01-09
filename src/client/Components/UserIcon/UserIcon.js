@@ -4,6 +4,7 @@ import "./UserIcon.css";
 import ChangeBotName from "../ChangeBotName/ChangeBotName";
 import Avatar from "../Avatar/Avatar";
 import ActiveMode from "../ActiveMode/ActiveMode";
+import {Button} from '@mui/material';
 
 const UserIcon = ({ setIsLightMode, setBotName, setIsActiveMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,9 +34,9 @@ const UserIcon = ({ setIsLightMode, setBotName, setIsActiveMode }) => {
 
       {menuOpen && (
         <div className="user-container">
-          <button className="Button" onClick={toggleMode}>
+          <Button onClick={toggleMode}>
             ערכת נושא
-          </button>
+          </Button>
           <ChangeBotName setBotName={setBotName} />
           <Avatar setUserIcon={setUserIcon} />
           <ActiveMode setIsActiveMode={setIsActiveMode} />

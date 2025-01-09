@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RiChatNewLine } from "react-icons/ri";
 import "./NewChatButton.css";
 import "../GlobalCss/Modals.css";
+import {Button} from '@mui/material';
 
 const NewChatButton = ({ handleReset, setActiveButton }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,18 +25,18 @@ const NewChatButton = ({ handleReset, setActiveButton }) => {
 
   return (
     <>
-      <button className="new-chat" onClick={openModal} data-testid="new-chat">
+      <Button onClick={openModal} data-testid="new-chat">
         שיחה חדשה
         <RiChatNewLine className="icon-new-chat" />
-      </button>
+      </Button>
       {showModal && (
         <div className="modal">
           <div className="modal-content" data-testid="modal-content">
             <p>אתה בטוח שאתה רוצה למחוק את הצאט</p>
-            <button className="Button" onClick={confirmReset} data-testid="confirm-reset">
+            <Button onClick={confirmReset} data-testid="confirm-reset">
               כן
-            </button>
-            <button className="Button" onClick={closeModal} data-testid="cancel-reset">
+            </Button>
+            <button onClick={closeModal} data-testid="cancel-reset">
               לא
             </button>
           </div>

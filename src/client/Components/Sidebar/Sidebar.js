@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import NewChatButton from '../NewChatButton/NewChatButton';
 import {MdOutlineDateRange} from 'react-icons/md';
 import {dates} from '../../resources/Sidebar';
-import {Button} from '@mui/material';
+import {Box, Button} from '@mui/material';
 
-const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
+const Sidebar = ({handleReset, allChats, showChat}) => {
   const messagesEndRef = useRef(null);
   const [activeButton, setActiveButton] = useState(null);
 
@@ -50,7 +50,14 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   }, [allChats]);
 
   return (
-    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
+    <Box sx={{
+      width: '15%',
+      padding: '15px',
+      height: '100vh',
+      position: 'fixed',
+      top: 0,
+      right: 0
+    }}>
       <div className="sidebar-content">
         <NewChatButton
           handleReset={handleReset}
@@ -63,7 +70,7 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
                 <span>
                   {dayTitle} <MdOutlineDateRange/>
                 </span>
-                {chats.map((chat) => (
+                {chats.map(chat => (
                   <Button
                     fullWidth
                     key={chat.id}
@@ -75,7 +82,6 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
                     color="secondary"
                     sx={{
                       margin: '2px',
-                      color: isLightMode ? 'black' : 'white',
                       borderWidth: '2px'
                     }}
                     data-testid="old-chat"
@@ -88,7 +94,7 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
           )}
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 
