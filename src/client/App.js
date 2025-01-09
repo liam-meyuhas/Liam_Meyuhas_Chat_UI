@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import ChatInput from "./Components/ChatInput/ChatInput";
 import alpha from "./images/alpha.png";
@@ -32,15 +32,68 @@ function App() {
     "תייצר לי סרטון קצר של דגל ישראל מתנופף ברוח": <VideoResponse />,
   });
 
-  const [isLightMode, setIsLightMode] = useState(false);
   const [response, setResponse] = useState([]);
   const [isSidebarOpen, setIsSidebarIsOpen] = useState(false);
-  const [botName, setBotName] = useState("כוכב נולד");
   const [isActiveMode, setIsActiveMode] = useState(false);
   const [allChats, setAllChats] = useState([]);
   const [showGif, setShowGif] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState(1);
+  const [isLightMode, setIsLightMode] = useState();
+  const [botName, setBotName] = useState("");
+  const [fname, setFname] = useState("");
+
+  const initalUserPath = "ליאם מיוחס / יחידת אוצר / צוות מטמון";
+
+  const initalBotName = (initalUserPath) => {
+    const userPath = initalUserPath.split("/");
+
+    return userPath[0].trim();
+  };
+
+  const initialName = initalBotName(initalUserPath);
+
+  const [timeOfDay, setTimeOfDay] = useState("");
+
+  const getTimeOfDay = () => {
+    const hours = new Date().getHours();
+
+    if (hours >= 0 && hours < 12) {
+      setTimeOfDay(" בוקר טוב ");
+    } else if (hours >= 12 && hours < 18) {
+      setTimeOfDay(" צהריים טובים ");
+    } else {
+      setTimeOfDay(" ערב טוב ");
+    }
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/botname", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fname: initialName }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error updating full name");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBotName(data.bot.name);
+        setFname(data.bot.fname);
+        setIsLightMode(data.bot.isLightMode);
+      })
+      .catch((error) => {
+        console.error("Error updating full name:", error);
+      });
+
+    getTimeOfDay();
+    const intervalId = setInterval(getTimeOfDay, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarIsOpen(!isSidebarOpen);
@@ -66,64 +119,68 @@ function App() {
   return (
     <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
       <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading} />
-
-      {response.length === 0 && (
+      <div className="header-logo">
         <header className="logo">
           <img src={alpha} alt="alpha Logo" className="alpha-logo" />
-          <p className="alpha-name">אלפא</p>
           <span className="beta-tag">Beta</span>
         </header>
-      )}
-      {response.length === 0 && (
-        <span className="botname">
-          <h1>{botName}</h1>
-        </span>
-      )}
-
-      {response.length === 0 && (
-        <Suggestions
-          isLightMode={isLightMode}
-          response={response}
-          setResponse={setResponse}
-          faq={faq}
-        />
-      )}
-      <div className="chatInput-container">
-        <ChatInput
-          response={response}
-          setResponse={setResponse}
-          isLightMode={isLightMode}
-          isActiveMode={isActiveMode}
-          showGif={showGif}
-          setShowGif={setShowGif}
-          faq={faq}
-        />
       </div>
-      <div className="sidebar-app">
-        {isSidebarOpen ? (
-          <Sidebar
-            isLightMode={isLightMode}
-            handleReset={handleReset}
-            allChats={allChats}
-            showChat={showChat}
-          />
-        ) : (
-          ""
+      <div className="app-body">
+        {response.length === 0 && (botName || fname) && (
+          <span className="botname">
+            <h1>
+              {timeOfDay}
+              {botName ? botName : fname}...
+            </h1>
+          </span>
         )}
-        <button
-          className={`sidebar-toggle ${isSidebarOpen ? "" : "close"}`}
-          onClick={toggleSidebar}
-          data-testid="sidebar-toggle"
-        >
-          <PiLineVerticalBold />
-        </button>
+        <>
+          {response.length === 0 && (
+            <Suggestions
+              isLightMode={isLightMode}
+              response={response}
+              setResponse={setResponse}
+              faq={faq}
+            />
+          )}
+        </>
+        <div className="chatInput-container">
+          <ChatInput
+            response={response}
+            setResponse={setResponse}
+            isLightMode={isLightMode}
+            isActiveMode={isActiveMode}
+            showGif={showGif}
+            setShowGif={setShowGif}
+            faq={faq}
+            fname={fname}
+          />
+        </div>
+        <div className="sidebar-app">
+          {isSidebarOpen ? (
+            <Sidebar
+              isLightMode={isLightMode}
+              handleReset={handleReset}
+              allChats={allChats}
+              showChat={showChat}
+            />
+          ) : (
+            ""
+          )}
+          <button
+            className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`}
+            onClick={toggleSidebar}
+            data-testid="sidebar-toggle"
+          >
+            <PiLineVerticalBold />
+          </button>
+        </div>
+        <UserIcon
+          setIsLightMode={setIsLightMode}
+          setBotName={setBotName}
+          setIsActiveMode={setIsActiveMode}
+        />
       </div>
-      <UserIcon
-        setIsLightMode={setIsLightMode}
-        setBotName={setBotName}
-        botName={botName}
-        setIsActiveMode={setIsActiveMode}
-      />
     </div>
   );
 }
