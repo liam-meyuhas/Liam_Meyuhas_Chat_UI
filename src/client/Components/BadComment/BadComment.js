@@ -41,7 +41,9 @@ const BadComment = ({ fname }) => {
       }
     };
 
-    sendToServer();
+    if (comment) {
+      sendToServer();
+    }
     handleClose();
   };
 
