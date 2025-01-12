@@ -128,7 +128,7 @@ function ChatInput({
           )}
           style={{
             direction: direction,
-            width: isFocused ? "500px" : "300px",
+            width: isFocused ? "600px" : "300px",
             transition: "width 0.4s ease-in-out",
           }}
         />

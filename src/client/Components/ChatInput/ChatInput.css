@@ -85,7 +85,7 @@
 .display-text {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   padding: 10px;
   border-radius: 5px;
   box-sizing: border-box;
