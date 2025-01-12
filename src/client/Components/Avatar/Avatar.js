@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { FiUser } from "react-icons/fi";
-import "../GlobalCss/Modals.css";
-import "./Avatar.css";
+import React, {useState} from 'react';
+import {FiUser} from 'react-icons/fi';
+import '../GlobalCss/Modals.css';
+import './Avatar.css';
 
-const Avatar = ({ setUserIcon }) => {
+const Avatar = ({setUserIcon}) => {
   const [showModal, setShowModal] = useState(false);
-  const [newUserIcon, setNewUserIcon] = useState();
 
   const openModal = () => {
     setShowModal(true);
   };
 
-  const save = () => {
-    setUserIcon(newUserIcon);
-  };
   const closeModal = () => {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    if (newUserIcon) {
-      save();
-    }
-  }, [newUserIcon]);
   return (
     <>
       <button className="Button" onClick={openModal}>
@@ -34,21 +25,20 @@ const Avatar = ({ setUserIcon }) => {
             <p>בחר את האווטר שלך:</p>
             <button
               className="avatar-icons "
-              onClick={() => setNewUserIcon("👦🏿")}
+              onClick={() => setUserIcon('👦🏿')}
             >
               👦🏿
             </button>
             <button
               className="avatar-icons "
-              onClick={() => setNewUserIcon("👸🏻")}
+              onClick={() => setUserIcon('👸🏻')}
             >
               👸🏻
             </button>
             <button
               className="avatar-icons "
               onClick={() => {
-                setNewUserIcon("👸🏿");
-                save();
+                setUserIcon('👸🏿');
               }}
             >
               👸🏿
@@ -56,17 +46,17 @@ const Avatar = ({ setUserIcon }) => {
 
             <button
               className="avatar-icons"
-              onClick={() => setNewUserIcon("👦🏻")}
+              onClick={() => setUserIcon('👦🏻')}
             >
               👦🏻
             </button>
             <button
               className="avatar-icons"
               onClick={() =>
-                setNewUserIcon(<FiUser className="icon-profile" />)
+                setUserIcon(<FiUser className="icon-profile"/>)
               }
             >
-              <FiUser />
+              <FiUser/>
             </button>
 
             <div className="save-container">
