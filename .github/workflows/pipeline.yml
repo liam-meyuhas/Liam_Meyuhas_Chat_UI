@@ -3,38 +3,38 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master  # Trigger the workflow on push to the 'main' branch
+      - main # Trigger the workflow on push to the 'main' branch
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
 
     environment:
       name: master
-  
+
     steps:
-    # Checkout the repository
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Set up Docker Buildx (required for multi-platform builds, optional)
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      # Set up Docker Buildx (required for multi-platform builds, optional)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    # Log in to Docker Hub or GitHub Container Registry
-    - name: Log in to Registry
-      run: |
-        docker login -u='${{ secrets.REGISTRY_USERNAME}}' -p='${{ secrets.REGISTRY_PASSWORD }}' https://${{ secrets.REGISTRY_URL }}
+      # Log in to Docker Hub or GitHub Container Registry
+      - name: Log in to Registry
+        run: |
+          docker login -u='${{ secrets.REGISTRY_USERNAME}}' -p='${{ secrets.REGISTRY_PASSWORD }}' https://${{ secrets.REGISTRY_URL }}
 
-    # Build the Docker image
-    - name: Build Docker image
-      run: |
-        docker build -t ${{ secrets.REGISTRY_URL }}/alpha-frontend:master .  # Build with the commit hash as the tag
-    # Push the Docker image to Docker Hub or another registry
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.REGISTRY_URL }}/alpha-frontend:master  # Push with the commit hash tag
-        
+      # Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.REGISTRY_URL }}/alpha-frontend:master .  # Build with the commit hash as the tag
+      # Push the Docker image to Docker Hub or another registry
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.REGISTRY_URL }}/alpha-frontend:master  # Push with the commit hash tag
+
   rollout:
     runs-on: ubuntu-latest
     environment:
@@ -56,16 +56,16 @@ jobs:
       - name: Log in to OpenShift
         run: |
           oc login ${{ secrets.OPENSHIFT_SERVER }} --token=${{ secrets.OPENSHIFT_TOKEN }} --insecure-skip-tls-verify=true
-          
+
       - name: Trigger rollout
         run: |
           # Replace these with your actual namespace and deployment
           DEPLOYMENT_NAME=d-alpha-fe
           NAMESPACE=single
-          
+
           # Trigger the rollout
           oc rollout restart deployment/$DEPLOYMENT_NAME -n $NAMESPACE
-          
+
       - name: Logout of Openshift
         run: |
           oc logout
