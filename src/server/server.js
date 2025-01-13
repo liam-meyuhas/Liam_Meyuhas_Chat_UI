@@ -4,7 +4,11 @@ const cors = require("cors");
 
 const app = express();
 const port = 5000;
-const uri = "mongodb://localhost:27017/alphachat";
+
+const username = process.env.MONGO_INITDB_ROOT_USERNAME;
+const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
+const dbName = process.env.DB_NAME || "alphachat";
+const uri = `mongodb://${username}:${password}@localhost:27017/${dbName}`;
 
 app.use(cors());
 app.use(express.json());
@@ -22,11 +26,11 @@ mongoose
     process.exit(1);
   });
 
-const badcomment = new mongoose.Schema({
+const badcommentSchema = new mongoose.Schema({
   comment: String,
 });
 
-const BadComment = mongoose.model("BadComment", badcomment, "BadComment");
+const BadComment = mongoose.model("BadComment", badcommentSchema);
 
 app.post("/BadComment", async (req, res) => {
   const { comment } = req.body;
@@ -39,23 +43,23 @@ app.post("/BadComment", async (req, res) => {
     await newBadComment.save();
 
     res.status(201).send({
-      message: "badcomment created successfully!",
+      message: "BadComment created successfully!",
       badcomment: newBadComment,
     });
   } catch (error) {
     res
       .status(400)
-      .send({ message: "Error creating badcomment", error: error.message });
+      .send({ message: "Error creating BadComment", error: error.message });
   }
 });
 
-const qna = new mongoose.Schema({
+const qnaSchema = new mongoose.Schema({
   question: String,
   answer: String,
   date: String,
 });
 
-const QnA = mongoose.model("QnA", qna, "QnA");
+const QnA = mongoose.model("QnA", qnaSchema);
 
 app.post("/QnA", async (req, res) => {
   const { question, answer, date } = req.body;
@@ -77,13 +81,13 @@ app.post("/QnA", async (req, res) => {
   }
 });
 
-const BotNameSchema = new mongoose.Schema({
+const botNameSchema = new mongoose.Schema({
   name: String,
   fname: String,
   isLightMode: Boolean,
 });
 
-const BotName = mongoose.model("BotName", BotNameSchema, "botname");
+const BotName = mongoose.model("BotName", botNameSchema);
 
 app.put("/api/botname", async (req, res) => {
   const { name, fname, isLightMode } = req.body;
