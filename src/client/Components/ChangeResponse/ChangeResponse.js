@@ -8,7 +8,7 @@ const ChangeResponse = ({ response, setResponse, faq }) => {
 
   const changeResponse = () => {
     if (newResponse !== "") {
-      const answer = faq[newResponse] || "לא מצאתי תשובה לשאלה שלך.";
+      const answer = faq[newResponse] || "לא מצאתי תשובה לשאלה שלך";
       const newObject = { input: newResponse, answer: answer };
       setResponse([...response, newObject]);
     }
