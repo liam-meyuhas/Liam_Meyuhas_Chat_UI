@@ -44,7 +44,7 @@ function ChatInput({
 
   const handleIconClick = async () => {
     if (input) {
-      const st_url = "http://localhost:5000/chatResponse";
+      const st_url = "svc-alpha-be.single.svc.cluster.local:3000/handler";
 
       const newObject = { input: input, answer: "מחכה לתשובה..." };
       setResponse((prevResponse) => [...prevResponse, newObject]);
