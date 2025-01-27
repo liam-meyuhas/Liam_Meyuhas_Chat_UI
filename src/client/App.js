@@ -179,6 +179,7 @@ function App() {
           setIsLightMode={setIsLightMode}
           setBotName={setBotName}
           setIsActiveMode={setIsActiveMode}
+          isLightMode={isLightMode}
         />
       </div>
     </div>
