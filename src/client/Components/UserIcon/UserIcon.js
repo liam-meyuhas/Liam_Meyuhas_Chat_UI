@@ -6,7 +6,7 @@ import Avatar from '../Avatar/Avatar';
 import ActiveMode from '../ActiveMode/ActiveMode';
 import ToggleTheme from '../ThemeToggle/ToggleTheme';
 
-const UserIcon = ({ isLightMode, setIsLightMode, setBotName, setIsActiveMode }) => {
+const UserIcon = ({isLightMode, setIsLightMode, setBotName, setIsActiveMode}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -19,15 +19,6 @@ const UserIcon = ({ isLightMode, setIsLightMode, setBotName, setIsActiveMode }) 
 
   return (
     <div className="theme-container">
-      <button
-        className="profile"
-        onClick={toggleMenu}
-        title="ליאם מיוחס/יחידת אוצר/צוות מטמון"
-        data-testid="user-icon"
-      >
-        <span className="avatar-icon-profile">{userIcon}</span>
-      </button>
-
       {menuOpen && (
         <div className="user-container">
           <ToggleTheme isLightMode={isLightMode} setIsLightMode={setIsLightMode}/>
@@ -36,6 +27,14 @@ const UserIcon = ({ isLightMode, setIsLightMode, setBotName, setIsActiveMode }) 
           <ActiveMode setIsActiveMode={setIsActiveMode}/>
         </div>
       )}
+      <button
+        className="profile"
+        onClick={toggleMenu}
+        title="ליאם מיוחס/יחידת אוצר/צוות מטמון"
+        data-testid="user-icon"
+      >
+        <span className="avatar-icon-profile">{userIcon}</span>
+      </button>
     </div>
   );
 };
