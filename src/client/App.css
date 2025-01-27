@@ -82,3 +82,9 @@
   flex-direction: row;
   right: 0;
 }
+
+.toggle-theme {
+  position: fixed;
+  bottom: 2%;
+  left: 1%;
+}

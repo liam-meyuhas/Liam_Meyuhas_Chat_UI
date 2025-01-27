@@ -9,6 +9,7 @@ import UserIcon from './Components/UserIcon/UserIcon';
 import ImageResponse from './Components/ImageResponse/ImageResponse';
 import VideoResponse from './Components/VideoResponse/VideoResponse';
 import SplashScreen from './Components/SplashScreen/SplashScreen';
+import ToggleTheme from './Components/ThemeToggle/ToggleTheme';
 
 function App() {
   const [faq, setFaq] = useState({
@@ -179,7 +180,9 @@ function App() {
           setIsLightMode={setIsLightMode}
           setBotName={setBotName}
           setIsActiveMode={setIsActiveMode}
+          isLightMode={isLightMode}
         />
+        <ToggleTheme isLightMode={isLightMode} setIsLightMode={setIsLightMode}/>
       </div>
     </div>
   );
