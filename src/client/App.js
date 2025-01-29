@@ -9,7 +9,7 @@ import UserIcon from './Components/UserIcon/UserIcon';
 import ImageResponse from './Components/ImageResponse/ImageResponse';
 import VideoResponse from './Components/VideoResponse/VideoResponse';
 import SplashScreen from './Components/SplashScreen/SplashScreen';
-import {Box, ThemeProvider} from '@mui/material';
+import {ThemeProvider} from '@mui/material';
 import {darkTheme, lightTheme} from './themes';
 
 function App() {
@@ -120,78 +120,72 @@ function App() {
 
   return (
     <ThemeProvider theme={isLightMode ? lightTheme : darkTheme}>
-      <Box sx={{
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        minHeight: '100vh'
-      }} data-testid="app">
+      <div className={`App ${isLightMode ? "light-mode" : ""}`} data-testid="app">
         <SplashScreen isLoading={isLoading} setIsLoading={setIsLoading}/>
-      <div className="header-logo">
+        <div className="header-logo">
           <header className="logo">
             <img src={alpha} alt="alpha Logo" className="alpha-logo"/>
             <span className="beta-tag">Beta</span>
           </header>
-      </div>
-      <div className="app-body">
-        {response.length === 0 && (botName || fname) && (
-          <span className="botname">
+        </div>
+        <div className="app-body">
+          {response.length === 0 && (botName || fname) && (
+            <span className="botname">
             <h1>
               {timeOfDay}
               {botName ? botName : fname}...
             </h1>
           </span>
-        )}
-        <>
-          {response.length === 0 && (
-            <Suggestions
-              isLightMode={isLightMode}
+          )}
+          <>
+            {response.length === 0 && (
+              <Suggestions
+                isLightMode={isLightMode}
+                response={response}
+                setResponse={setResponse}
+                faq={faq}
+              />
+            )}
+          </>
+          <div className="chatInput-container">
+            <ChatInput
               response={response}
               setResponse={setResponse}
+              isLightMode={isLightMode}
+              isActiveMode={isActiveMode}
+              showGif={showGif}
+              setShowGif={setShowGif}
               faq={faq}
+              fname={fname}
             />
-          )}
-        </>
-        <div className="chatInput-container">
-          <ChatInput
-            response={response}
-            setResponse={setResponse}
-            isLightMode={isLightMode}
-            isActiveMode={isActiveMode}
-            showGif={showGif}
-            setShowGif={setShowGif}
-            faq={faq}
-            fname={fname}
+          </div>
+          <div className="sidebar-app">
+            {isSidebarOpen ? (
+              <Sidebar
+                isLightMode={isLightMode}
+                handleReset={handleReset}
+                allChats={allChats}
+                showChat={showChat}
+              />
+            ) : (
+              ''
+            )}
+            <button
+              className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`}
+              onClick={toggleSidebar}
+              data-testid="sidebar-toggle"
+            >
+              <PiLineVerticalBold/>
+            </button>
+          </div>
+          <UserIcon
+            setIsLightMode={setIsLightMode}
+            setBotName={setBotName}
+            botName={botName}
+            setIsActiveMode={setIsActiveMode}
           />
         </div>
-        <div className="sidebar-app">
-          {isSidebarOpen ? (
-            <Sidebar
-              isLightMode={isLightMode}
-              handleReset={handleReset}
-              allChats={allChats}
-              showChat={showChat}
-            />
-          ) : (
-            ''
-          )}
-          <button
-            className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`}
-            onClick={toggleSidebar}
-            data-testid="sidebar-toggle"
-          >
-            <PiLineVerticalBold/>
-          </button>
-        </div>
-        <UserIcon
-          setIsLightMode={setIsLightMode}
-          setBotName={setBotName}
-          botName={botName}
-          setIsActiveMode={setIsActiveMode}
-        />
-      </Box>
+      </div>
     </ThemeProvider>
   );
 }
