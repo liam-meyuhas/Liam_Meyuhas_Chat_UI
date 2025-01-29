@@ -1,12 +1,18 @@
 .sidebar {
-  width: 15%;
+  width: 0;
   background-color: #201f1f;
   color: white;
-  padding: 15px;
+  padding: 0;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0;
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar.open {
+  width: 15%;
+  padding: 15px;
 }
 
 .sidebar-light {

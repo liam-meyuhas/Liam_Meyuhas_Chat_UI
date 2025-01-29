@@ -1,12 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './Sidebar.css';
-import clsx from 'clsx';
 import NewChatButton from '../NewChatButton/NewChatButton';
 import {MdOutlineDateRange} from 'react-icons/md';
 import {dates} from '../../resources/Sidebar';
 import {Button} from '@mui/material';
 
-const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
+const Sidebar = ({isSidebarOpen, isLightMode, handleReset, allChats, showChat}) => {
   const messagesEndRef = useRef(null);
   const [activeButton, setActiveButton] = useState(null);
 
@@ -50,43 +49,41 @@ const Sidebar = ({isLightMode, handleReset, allChats, showChat}) => {
   }, [allChats]);
 
   return (
-    <div className={clsx('sidebar', {'sidebar-light': isLightMode})}>
-      <div className="sidebar-content">
-        <NewChatButton
-          handleReset={handleReset}
-          setActiveButton={setActiveButton}
-        />
-        <div className="button-column">
-          {Object.entries(groupChatsByDay(allChats)).map(
-            ([dayTitle, chats]) => (
-              <div key={dayTitle}>
+    <div className="sidebar-content" hidden={!isSidebarOpen}>
+      <NewChatButton
+        handleReset={handleReset}
+        setActiveButton={setActiveButton}
+      />
+      <div className="button-column">
+        {Object.entries(groupChatsByDay(allChats)).map(
+          ([dayTitle, chats]) => (
+            <div key={dayTitle}>
                 <span>
                   {dayTitle} <MdOutlineDateRange/>
                 </span>
-                {chats.map((chat) => (
-                  <Button
-                    fullWidth
-                    key={chat.id}
-                    variant={
-                      activeButton === chat.id ? 'contained' : 'outlined'
-                    }
-                    onClick={() => handleOnClick(chat)}
-                    ref={messagesEndRef}
-                    color="secondary"
-                    sx={{
-                      margin: '2px',
-                      color: isLightMode ? 'black' : 'white',
-                      borderWidth: '2px'
-                    }}
-                    data-testid="old-chat"
-                  >
-                    צ'אט
-                  </Button>
-                ))}
-              </div>
-            )
-          )}
-        </div>
+              {chats.map((chat) => (
+                <Button
+                  fullWidth
+                  key={chat.id}
+                  variant={
+                    activeButton === chat.id ? 'contained' : 'outlined'
+                  }
+                  onClick={() => handleOnClick(chat)}
+                  ref={messagesEndRef}
+                  color="secondary"
+                  sx={{
+                    margin: '2px',
+                    color: isLightMode ? 'black' : 'white',
+                    borderWidth: '2px'
+                  }}
+                  data-testid="old-chat"
+                >
+                  צ'אט
+                </Button>
+              ))}
+            </div>
+          )
+        )}
       </div>
     </div>
   );
