@@ -65,6 +65,7 @@
   position: fixed;
   color: gray;
   top: 50%;
+  transition: margin-right 0.3s ease, padding 0.3s ease;
 }
 
 .sidebar-toggle.open {
